@@ -1,0 +1,33 @@
+#!/bin/bash
+
+CONSUL_VERSION="1.6.1"
+OS_ARCHITECTURE=arm
+
+echo "Cleanup and previous configurations"
+sudo rm /etc/consul.d/*
+sudo rm /etc/systemd/system/consul.service
+
+echo "creating consul user and config folders"
+mkdir --parents /etc/consul.d
+mkdir --parents /opt/consul
+useradd --system --home /etc/consul.d --shell /bin/false consul
+chown --recursive consul:consul /opt/consul /etc/consul.d
+cp /hashipi-config/consul/consul.hcl /etc/consul.d/
+chmod 640 /etc/consul.d/consul.hcl
+
+echo "downloading consul and moving to /usr/local/bin/"
+curl -k https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip --output consul.zip
+unzip consul.zip
+chown root:root consul
+mv consul /usr/local/bin/
+rm consul.zip
+
+echo "setting up consul autocomplete"
+consul -autocomplete-install
+complete -C /usr/local/bin/consul consul
+
+echo "starting consul"
+cp /hashipi-config/consul/consul.service /etc/systemd/system/
+systemctl enable consul
+systemctl start consul
+systemctl status consul

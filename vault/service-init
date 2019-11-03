@@ -1,0 +1,25 @@
+#!/bin/bash
+
+VAULT_VERSION="1.2.3"
+OS_ARCHITECTURE=arm
+
+echo "Cleanup and previous configurations"
+sudo rm /etc/vault.d/*
+sudo rm /etc/systemd/system/vault.service
+
+echo "creating vault user and config folders"
+mkdir --parents /opt/vault
+mkdir --parents /etc/vault.d
+useradd --system --home /etc/vault.d --shell /bin/false vault
+chown -- recursive vault:vault /opt/vault /etc/vault.d
+chmod 700 /etc/vault.d/
+
+echo "downloading vault and moving to /usr/local/bin/"
+curl -k https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${OS_ARCHITECTURE}.zip --output vault.zip
+unzip vault.zip
+mv vault /usr/local/bin/vault
+rm vault.zip
+
+echo "setting up vault autocomplete"
+vault -autocomplete-install
+complete -C /usr/local/bin/vault vault

@@ -1,0 +1,3 @@
+#!/bin/bash
+# presumes nomad service-init has already been run
+cp /hashipi-config/nomad/client.hcl /etc/nomad.d/

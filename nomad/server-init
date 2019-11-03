@@ -1,0 +1,2 @@
+# presumes nomad service-init has already been run
+cp server.hcl /etc/nomad.d/

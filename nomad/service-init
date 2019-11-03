@@ -1,0 +1,33 @@
+#!/bin/bash
+
+NOMAD_VERSION="0.10.0"
+OS_ARCHITECTURE=arm
+
+echo "Cleanup and previous configurations"
+sudo rm /etc/nomad.d/*
+sudo rm /etc/systemd/system/nomad.service
+
+echo "creating nomad user and config folders"
+mkdir --parents /opt/nomad
+mkdir --parents /etc/nomad.d
+useradd --system --home /etc/nomad.d --shell /bin/false nomad
+chown --recursive nomad:nomad /opt/nomad /etc/nomad.d
+cp /hashipi-config/nomad/nomad.hcl /etc/nomad.d
+chmod 700 /etc/nomad.d/
+
+echo "downloading nomad and moving to /usr/local/bin/"
+curl -k https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/${NOMAD_VERSION}_linux_${OS_ARCHITECTURE}.zip --output nomad.zip
+unzip nomad.zip
+chown root:root nomad
+mv nomad /usr/local/bin/
+rm nomad.zip
+
+echo "setting up nomad autocomplete"
+nomad -autocomplete-install
+complete -C /usr/local/bin/nomad nomad
+
+echo "starting nomad"
+cp /hashipi-config/nomad/nomad.service /etc/systemd/system/
+systemctl enable nomad
+systemctl start nomad
+systemctl status nomad
