@@ -1,2 +1,6 @@
 apt-get update && apt-get install -y golang unzip curl wget net-tools
 apt update && apt -y upgrade && apt -y dist-upgrade
+
+bash ../consul/service-init
+bash ../nomad/service-init
+bash ../vault/service-init

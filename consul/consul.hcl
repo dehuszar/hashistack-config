@@ -1,7 +1,13 @@
-datacenter = "dc1"
 data_dir = "/opt/consul"
-encrypt = ENCRYPTION_KEY
-retry_join = []
+datacenter = "home"
+primary_datacenter = "home"
+
+acl {
+  enabled = true
+  default_policy = "deny"
+  down_policy = "extend-cache"
+}
+
 performance {
   raft_multiplier = 1
 }
