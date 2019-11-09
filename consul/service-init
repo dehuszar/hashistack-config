@@ -8,18 +8,18 @@ sudo rm /etc/consul.d/*
 sudo rm /etc/systemd/system/consul.service
 
 echo "creating consul user and config folders"
-mkdir --parents /etc/consul.d
-mkdir --parents /opt/consul
-useradd --system --home /etc/consul.d --shell /bin/false consul
-chown --recursive consul:consul /opt/consul /etc/consul.d
+sudo mkdir --parents /etc/consul.d
+sudo mkdir --parents /opt/consul
+sudo useradd --system --home /etc/consul.d --shell /bin/false consul
+sudo chown --recursive consul:consul /opt/consul /etc/consul.d
 sudo cp /home/pi/hashipi-config/consul/consul.hcl /etc/consul.d/
-chmod 640 /etc/consul.d/consul.hcl
+sudo chmod 640 /etc/consul.d/consul.hcl
 
 echo "downloading consul and moving to /usr/local/bin/"
 curl -k https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip --output consul.zip
 unzip consul.zip
 chown root:root consul
-mv consul /usr/local/bin/
+sudo mv consul /usr/local/bin/
 rm consul.zip
 
 echo "setting up consul autocomplete"
