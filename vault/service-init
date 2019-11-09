@@ -15,6 +15,7 @@ sudo chown -- recursive vault:vault /opt/vault /etc/vault.d
 sudo chmod 700 /etc/vault.d/
 
 echo "downloading vault and moving to /usr/local/bin/"
+cd /home/pi
 curl -k https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${OS_ARCHITECTURE}.zip --output vault.zip
 unzip vault.zip
 sudo mv vault /usr/local/bin/vault

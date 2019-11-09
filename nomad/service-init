@@ -16,6 +16,7 @@ cp /home/pi/hashipi-config/nomad/nomad.hcl /etc/nomad.d
 chmod 700 /etc/nomad.d/
 
 echo "downloading nomad and moving to /usr/local/bin/"
+cd /home/pi
 curl -k https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/${NOMAD_VERSION}_linux_${OS_ARCHITECTURE}.zip --output nomad.zip
 unzip nomad.zip
 sudo chown root:root nomad
