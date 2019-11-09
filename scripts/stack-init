@@ -1,5 +1,5 @@
-apt-get update && apt-get install -y golang unzip curl wget net-tools
-apt update && apt -y upgrade && apt -y dist-upgrade
+sudo apt-get update && sudo apt-get install -y golang unzip curl wget net-tools
+sudo apt update && sudo apt -y upgrade && sudo apt -y dist-upgrade
 
 bash ../consul/service-init
 bash ../nomad/service-init

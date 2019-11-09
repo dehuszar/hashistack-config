@@ -12,7 +12,7 @@ mkdir --parents /etc/consul.d
 mkdir --parents /opt/consul
 useradd --system --home /etc/consul.d --shell /bin/false consul
 chown --recursive consul:consul /opt/consul /etc/consul.d
-cp /hashipi-config/consul/consul.hcl /etc/consul.d/
+sudo cp /home/pi/hashipi-config/consul/consul.hcl /etc/consul.d/
 chmod 640 /etc/consul.d/consul.hcl
 
 echo "downloading consul and moving to /usr/local/bin/"
@@ -27,7 +27,7 @@ consul -autocomplete-install
 complete -C /usr/local/bin/consul consul
 
 echo "starting consul"
-cp /hashipi-config/consul/consul.service /etc/systemd/system/
-systemctl enable consul
-systemctl start consul
-systemctl status consul
+sudo cp /home/pi/hashipi-config/consul/consul.service /etc/systemd/system/
+sudo systemctl enable consul
+sudo systemctl start consul
+sudo systemctl status consul

@@ -8,16 +8,16 @@ sudo rm /etc/vault.d/*
 sudo rm /etc/systemd/system/vault.service
 
 echo "creating vault user and config folders"
-mkdir --parents /opt/vault
-mkdir --parents /etc/vault.d
-useradd --system --home /etc/vault.d --shell /bin/false vault
-chown -- recursive vault:vault /opt/vault /etc/vault.d
-chmod 700 /etc/vault.d/
+sudo mkdir --parents /opt/vault
+sudo mkdir --parents /etc/vault.d
+sudo useradd --system --home /etc/vault.d --shell /bin/false vault
+sudo chown -- recursive vault:vault /opt/vault /etc/vault.d
+sudo chmod 700 /etc/vault.d/
 
 echo "downloading vault and moving to /usr/local/bin/"
 curl -k https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${OS_ARCHITECTURE}.zip --output vault.zip
 unzip vault.zip
-mv vault /usr/local/bin/vault
+sudo mv vault /usr/local/bin/vault
 rm vault.zip
 
 echo "give Vault the ability to use the mlock syscall without running the process as root. The mlock syscall prevents memory from being swapped to disk"
