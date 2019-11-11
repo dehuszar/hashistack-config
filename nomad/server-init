@@ -1,2 +1,2 @@
 # presumes nomad service-init has already been run
-cp server.hcl /etc/nomad.d/
+sudo cp /home/pi/hashipi-config/nomad/server.hcl /etc/nomad.d/

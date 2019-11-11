@@ -1,6 +1,7 @@
 data_dir = "/opt/consul"
-datacenter = "home"
-primary_datacenter = "home"
+datacenter = "lan"
+primary_datacenter = "lan"
+retry_join = ["rpi1", "rpi2", "rpi3", "rpi4"]
 
 acl {
   enabled = true
