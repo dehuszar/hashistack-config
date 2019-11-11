@@ -11,7 +11,8 @@ echo "creating vault user and config folders"
 sudo mkdir --parents /opt/vault
 sudo mkdir --parents /etc/vault.d
 sudo useradd --system --home /etc/vault.d --shell /bin/false vault
-sudo chown -- recursive vault:vault /opt/vault /etc/vault.d
+sudo cp /home/pi/hashipi-config/vault/vault.hcl /etc/vault.d/
+sudo chown --recursive vault:vault /opt/vault /etc/vault.d
 sudo chmod 700 /etc/vault.d/
 
 echo "downloading vault and moving to /usr/local/bin/"

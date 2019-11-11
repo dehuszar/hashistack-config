@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo chown --recursive vault:vault /opt/vault /etc/vault.d
+sudo chmod 700 /etc/vault.d/

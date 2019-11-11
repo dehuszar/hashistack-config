@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo cp /home/pi/hashipi-config/nomad/nomad.hcl /etc/nomad.d/
+chmod 700 /etc/nomad.d/
