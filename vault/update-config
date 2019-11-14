@@ -1,3 +1,4 @@
 #!/bin/bash
+sudo cp /home/pi/hashipi-config/vault/vault.hcl /etc/vault.d/
 sudo chown --recursive vault:vault /opt/vault /etc/vault.d
 sudo chmod 700 /etc/vault.d/
