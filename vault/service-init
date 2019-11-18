@@ -1,7 +1,18 @@
 #!/bin/bash
 
-VAULT_VERSION="1.2.3"
-OS_ARCHITECTURE=arm
+# this script can accept the arguments:
+# -v to specify the version to download, and
+# -a to specify which architecture to download
+# valid architectures are x86, amd64, arm[default], and arm64
+
+while getopts va option
+do
+case "${option}"
+in
+v) VAULT_VERSION=${OPTARG:-"1.2.3"};;
+a) OS_ARCHITECTURE=${OPTARG:-"arm"};;
+esac
+done
 
 echo "Cleanup and previous configurations"
 sudo rm /etc/vault.d/*
