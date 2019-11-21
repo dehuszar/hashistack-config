@@ -9,7 +9,7 @@ while getopts va option
 do
 case "${option}"
 in
-v) VAULT_VERSION=${OPTARG:-"1.2.3"};;
+v) VAULT_VERSION=${OPTARG:-"1.3.0"};;
 a) OS_ARCHITECTURE=${OPTARG:-"arm"};;
 esac
 done
