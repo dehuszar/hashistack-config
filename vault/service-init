@@ -28,7 +28,7 @@ sudo chmod 700 /etc/vault.d/
 
 echo "downloading vault and moving to /usr/local/bin/"
 cd /home/pi
-curl -k https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${OS_ARCHITECTURE}.zip --output vault.zip
+wget --output-document=vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_${OS_ARCHITECTURE}.zip
 unzip vault.zip
 sudo mv vault /usr/local/bin/vault
 rm vault.zip

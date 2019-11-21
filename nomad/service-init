@@ -28,7 +28,7 @@ sudo chown --recursive nomad:nomad /opt/nomad /etc/nomad.d
 
 echo "downloading nomad and moving to /usr/local/bin/"
 cd /home/pi
-curl -k https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${OS_ARCHITECTURE}.zip --output nomad.zip
+wget --output-document=nomad.zip https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${OS_ARCHITECTURE}.zip
 unzip nomad.zip
 sudo chown root:root nomad
 sudo mv nomad /usr/local/bin/

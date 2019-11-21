@@ -28,7 +28,7 @@ sudo chmod 640 /etc/consul.d/consul.hcl
 
 echo "downloading consul and moving to /usr/local/bin/"
 cd /home/pi
-curl -k https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip --output consul.zip
+wget --output-document=consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip
 unzip consul.zip
 sudo chown root:root consul
 sudo mv consul /usr/local/bin/
