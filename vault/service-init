@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# this script can accept the arguments:
-# -v to specify the version to download, and
-# -a to specify which architecture to download
-# valid architectures are x86, amd64, arm[default], and arm64
+# this allows the script to take params to override the defaults; e.g.
+# bash service-init 1.6.2 amd64
+# TODO :: implement flag enumeration so they don't have to be ordered
+# i.e. if I want to override 2, I have to provide 1
 
-while getopts va option
-do
-case "${option}"
-in
-v) VAULT_VERSION=${OPTARG:-"1.3.0"};;
-a) OS_ARCHITECTURE=${OPTARG:-"arm"};;
-esac
-done
+VAULT_VERSION=${1:-"1.3.0"}
+OS_ARCHITECTURE=${2:-"arm"}
 
 echo "Cleanup and previous configurations"
 sudo rm /etc/vault.d/*

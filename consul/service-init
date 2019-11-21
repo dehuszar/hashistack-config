@@ -5,14 +5,13 @@
 # -a to specify which architecture to download
 # valid architectures are x86, amd64, arm[default], and arm64
 
-while getopts va option
-do
-case "${option}"
-in
-v) CONSUL_VERSION=${OPTARG:-"1.6.2"};;
-a) OS_ARCHITECTURE=${OPTARG:-"armhfv6"};;
-esac
-done
+# this allows the script to take params to override the defaults; e.g.
+# bash service-init 1.6.2 amd64
+# TODO :: implement flag enumeration so they don't have to be ordered
+# i.e. if I want to override 2, I have to provide 1
+
+CONSUL_VERSION=${1:-"1.6.2"}
+OS_ARCHITECTURE=${2:-"armhfv6"}
 
 echo "Cleanup and previous configurations"
 sudo rm /etc/consul.d/*
