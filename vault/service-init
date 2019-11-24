@@ -73,3 +73,9 @@ LimitMEMLOCK=infinity
 [Install]
 WantedBy=multi-user.target
 EOF
+
+sudo chown -R vault:vault /opt/vault /etc/vault.d
+
+sudo systemctl enable nomad
+sudo systemctl start nomad
+sudo systemctl status nomad
