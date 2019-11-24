@@ -6,9 +6,10 @@ storage "raft" {
 
 listener "tcp" {
   address     = "{{ GetInterfaceIP \"eth0\" }}:8200"
-  cluster_address = "{{ GetInterfaceIP \"eth0\" }}:8201"
   tls_disable = 1
 }
 
+api_addr     = "https://{{ GetInterfaceIP \"eth0\" }}:8200"
+cluster_addr = "https://{{ GetInterfaceIP \"eth0\" }}:8201"
 disable_mlock = true
 ui=true
