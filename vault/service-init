@@ -76,6 +76,6 @@ EOF
 
 sudo chown -R vault:vault /opt/vault /etc/vault.d
 
-sudo systemctl enable nomad
-sudo systemctl start nomad
-sudo systemctl status nomad
+sudo systemctl enable vault
+sudo systemctl start vault
+sudo systemctl status vault
