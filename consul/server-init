@@ -1,3 +1,4 @@
 # presumes consul service-init has already been run
-cp server.hcl /etc/consul.d/
+cp /home/pi/hashipi-config/consul/server.hcl /etc/consul.d/
 chmod 640 /etc/consul.d/server.hcl
+chown consul:consul /etc/consul.d -R
