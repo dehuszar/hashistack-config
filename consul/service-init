@@ -10,8 +10,8 @@
 # TODO :: implement flag enumeration so they don't have to be ordered
 # i.e. if I want to override 2, I have to provide 1
 
-CONSUL_VERSION=${1:-"1.6.2"}
-OS_ARCHITECTURE=${2:-"armhfv6"}
+CONSUL_VERSION=${1}
+OS_ARCHITECTURE=${2}
 
 echo "Cleanup and previous configurations"
 sudo rm /etc/consul.d/*
@@ -27,11 +27,7 @@ sudo chmod 640 /etc/consul.d/consul.hcl
 
 echo "downloading consul and moving to /usr/local/bin/"
 cd /home/pi
-wget --output-document=consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip
-unzip consul.zip
-sudo chown root:root consul
-sudo mv consul /usr/local/bin/
-rm consul.zip
+sudo bash hashipi-config/consul/get-consul $1 $2
 
 echo "setting up consul autocomplete"
 consul -autocomplete-install

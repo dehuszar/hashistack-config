@@ -1,0 +1,19 @@
+
+# this script can accept the arguments:
+# -v to specify the version to download, and
+# -a to specify which architecture to download
+# valid architectures are x86, amd64, arm[default], and arm64
+
+# this allows the script to take params to override the defaults; e.g.
+# bash service-init 1.6.2 amd64
+# TODO :: implement flag enumeration so they don't have to be ordered
+# i.e. if I want to override 2, I have to provide 1
+
+CONSUL_VERSION=${1:-"1.6.2"}
+OS_ARCHITECTURE=${2:-"armhfv6"}
+
+wget --output-document=consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip
+unzip consul.zip
+sudo chown root:root consul
+sudo mv consul /usr/local/bin/
+rm consul.zip
