@@ -1,7 +1,7 @@
 client_addr = "0.0.0.0"
 data_dir = "/opt/consul"
-datacenter = "lan"
-primary_datacenter = "lan"
+datacenter = "home"
+primary_datacenter = "home"
 retry_join = ["network1", "network2", "network3"]
 
 performance {
