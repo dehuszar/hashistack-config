@@ -1,3 +1,3 @@
-node "network2" {
+node "network3" {
   policy = "write"
 }
