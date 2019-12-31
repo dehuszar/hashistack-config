@@ -7,5 +7,4 @@ vault {
   task_token_ttl = "1h"
   create_from_role = "nomad-cluster"
   token = ""
-  namespace = "<vault namespace for the cluster>"
 }
