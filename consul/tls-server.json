@@ -6,8 +6,8 @@
     "allow_tls": true
   },
   "ca_file": "/etc/consul.d/consul-agent-ca.pem",
-  "cert_file": "/etc/consul.d/lan-server-consul-0.pem",
-  "key_file": "/etc/consul.d/lan-server-consul-0-key.pem",
+  "cert_file": "/etc/consul.d/home-server-consul-0.pem",
+  "key_file": "/etc/consul.d/home-server-consul-0-key.pem",
   "ports": {
     "http": -1,
     "https": 8501
