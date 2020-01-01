@@ -3,7 +3,7 @@
 
 vault {
   enabled = true
-  address = "https://0.0.0.0:8200"
+  address = "https://127.0.0.1:8200"
   task_token_ttl = "1h"
   create_from_role = "nomad-cluster"
   token = ""
