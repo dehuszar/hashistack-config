@@ -10,8 +10,8 @@
 # TODO :: implement flag enumeration so they don't have to be ordered
 # i.e. if I want to override 2, I have to provide 1
 
-CONSUL_VERSION=${1}
-OS_ARCHITECTURE=${2}
+CONSUL_VERSION=${1:-"1.6.2"}
+OS_ARCHITECTURE=${2:-"armhfv6"}
 
 echo "Cleanup and previous configurations"
 sudo rm /etc/consul.d/*
