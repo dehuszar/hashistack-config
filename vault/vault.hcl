@@ -6,14 +6,14 @@ storage "raft" {
 
 listener "tcp" {
   address     = "127.0.0.1:8200"
-  tls_disable = 1
+  tls_disable = false
 }
 
 // duplicate the contents of the above listener with the resolvable ip address
 // of the node to be able to access the ui from the local network
 // listener "tcp" {
 //   address     = "127.0.0.1:8200"
-//   tls_disable = 1
+//   tls_disable = false
 // }
 
 api_addr     = "https://127.0.0.1:8200"
