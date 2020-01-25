@@ -1,0 +1,20 @@
+
+# this script can accept the arguments:
+# -v to specify the version to download, and
+# -a to specify which architecture to download
+# valid architectures are x86, amd64, arm[default], and arm64
+
+# this allows the script to take params to override the defaults; e.g.
+# bash service-init 0.24.0 amd64
+# TODO :: implement flag enumeration so they don't have to be ordered
+# i.e. if I want to override 2, I have to provide 1
+
+CONSUL_VERSION=${1:-"0.24.0"}
+OS_ARCHITECTURE=${2:-"arm"}
+
+wget --output-document=consul-template.zip https://releases.hashicorp.com/consul-template/${CONSUL_VERSION}/consul-template_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip
+
+unzip consul-template.zip
+sudo chown root:root consul-template
+sudo mv consul-template /usr/local/bin/
+rm consul-template.zip
