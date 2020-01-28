@@ -3,14 +3,14 @@
 vault {
   # This is the address of the Vault leader. The protocol (http(s)) portion
   # of the address is required.
-  address      = "http://vault.service.consul:8200"
+  address      = "https://vault.service.consul:8200"
 
   # This value can also be specified via the environment variable VAULT_TOKEN.
   token        = "REPLACE_WITH_VAULT_TOKEN"
 
   # This should also be less than or around 1/3 of your TTL for a predictable
   # behaviour. See https://github.com/hashicorp/vault/issues/3414
-  grace        = "1s"
+  # grace        = "1s"
 
   # This tells Consul Template that the provided token is actually a wrapped
   # token that should be unwrapped using Vault's cubbyhole response wrapping

@@ -6,7 +6,7 @@ After=network-online.target consul.service vault.service
 [Service]
 EnvironmentFile=-/etc/sysconfig/consul-template
 Restart=on-failure
-ExecStart=/usr/local/sbin/consul-template $OPTIONS -config=/etc/consul-template.d
+ExecStart=/usr/local/sbin/consul-template -config=/etc/consul-template.d -log-level=debug
 KillSignal=SIGINT
 
 [Install]
