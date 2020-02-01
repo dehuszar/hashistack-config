@@ -1,0 +1,20 @@
+
+# this script can accept the arguments:
+# -v to specify the version to download, and
+# -a to specify which architecture to download
+# valid architectures are x86, amd64, arm[default], and arm64
+
+# this allows the script to take params to override the defaults; e.g.
+# bash get-binary nomad 0.10.1 amd64
+# TODO :: implement flag enumeration so they don't have to be ordered
+# i.e. if I want to override 2, I have to provide 1
+
+BINARY_NAME=${1:-"nomad"}
+BONARY_VERSION=${2:-"0.10.3"}
+OS_ARCHITECTURE=${3:-"arm"}
+
+wget --output-document=${BINARY_NAME}.zip https://releases.hashicorp.com/${BINARY_NAME}/${BONARY_VERSION}/${BINARY_NAME}_${BONARY_VERSION}_linux_${OS_ARCHITECTURE}.zip
+unzip ${BINARY_NAME}.zip
+sudo chown root:root ${BINARY_NAME}
+sudo mv ${BINARY_NAME} /usr/local/bin/
+rm ${BINARY_NAME}.zip
