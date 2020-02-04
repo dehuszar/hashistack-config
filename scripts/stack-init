@@ -3,6 +3,6 @@ sudo apt update && sudo apt -y upgrade && sudo apt -y dist-upgrade
 
 cp /home/pi/hashipi-config/bash_aliases /home/pi/.bash_aliases
 
-bash /home/pi/hashipi-config/consul/service-init
-bash /home/pi/hashipi-config/nomad/service-init
-bash /home/pi/hashipi-config/vault/service-init
+bash /home/pi/hashipi-config/consul/scripts/service-init
+bash /home/pi/hashipi-config/nomad/scripts/service-init
+bash /home/pi/hashipi-config/vault/scripts/service-init
