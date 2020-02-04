@@ -10,10 +10,10 @@
 # i.e. if I want to override 2, I have to provide 1
 
 BINARY_NAME=${1:-"nomad"}
-BONARY_VERSION=${2:-"0.10.3"}
+BINARY_VERSION=${2:-"0.10.3"}
 OS_ARCHITECTURE=${3:-"arm"}
 
-wget --output-document=${BINARY_NAME}.zip https://releases.hashicorp.com/${BINARY_NAME}/${BONARY_VERSION}/${BINARY_NAME}_${BONARY_VERSION}_linux_${OS_ARCHITECTURE}.zip
+wget --output-document=${BINARY_NAME}.zip https://releases.hashicorp.com/${BINARY_NAME}/${BINARY_VERSION}/${BINARY_NAME}_${BINARY_VERSION}_linux_${OS_ARCHITECTURE}.zip
 unzip ${BINARY_NAME}.zip
 sudo chown root:root ${BINARY_NAME}
 sudo mv ${BINARY_NAME} /usr/local/bin/

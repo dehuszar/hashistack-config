@@ -1,22 +1,4 @@
 #!/bin/bash
-
-# this script can accept the arguments:
-# -v to specify the version to download, and
-# -a to specify which architecture to download
-# valid architectures are x86, amd64, arm[default], and arm64
-
-# this allows the script to take params to override the defaults; e.g.
-# bash service-init 1.6.2 amd64
-# TODO :: implement flag enumeration so they don't have to be ordered
-# i.e. if I want to override 2, I have to provide 1
-
-CONSUL_VERSION=${1:-"1.6.2"}
-OS_ARCHITECTURE=${2:-"armhfv6"}
-
-echo "Cleanup and previous configurations"
-sudo rm /etc/consul.d/*
-sudo rm /etc/systemd/system/consul.service
-
 echo "creating consul user and config folders"
 sudo mkdir --parents /etc/consul.d
 sudo mkdir --parents /opt/consul
