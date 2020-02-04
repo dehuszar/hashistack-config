@@ -22,8 +22,7 @@ sudo cp /home/pi/hashipi-config/consul-template/consul-template.hcl /etc/consul-
 sudo chmod 640 /etc/consul-template.d/consul-template.hcl
 
 echo "downloading consul-template and moving to /usr/local/bin/"
-cd /home/pi
-sudo bash hashipi-config/consul-template/get-consul-template $1 $2
+sudo bash /home/pi/hashipi-config/consul-template/get-consul-template $1 $2
 
 echo "setting up consul-template autocomplete"
 consul-template -autocomplete-install
