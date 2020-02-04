@@ -7,6 +7,9 @@ sudo cp /home/pi/hashipi-config/nomad/nomad.hcl /etc/nomad.d/
 chmod 700 /etc/nomad.d/
 sudo chown --recursive nomad:nomad /opt/nomad /etc/nomad.d
 
+echo "downloading nomad and moving to /usr/local/bin/"
+sudo bash /home/pi/hashipi-config/nomad/scripts/get-nomad $1 $2
+
 echo "setting up nomad autocomplete"
 nomad -autocomplete-install
 complete -C /usr/local/bin/nomad nomad
