@@ -9,7 +9,7 @@
 # TODO :: implement flag enumeration so they don't have to be ordered
 # i.e. if I want to override 2, I have to provide 1
 
-CONSUL_VERSION=${1:-"0.24.0"}
+CONSUL_VERSION=${1:-"0.24.1"}
 OS_ARCHITECTURE=${2:-"arm"}
 
 wget --output-document=consul-template.zip https://releases.hashicorp.com/consul-template/${CONSUL_VERSION}/consul-template_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip

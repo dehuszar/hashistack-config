@@ -13,10 +13,6 @@
 CONSUL_VERSION=${1:-"0.24.1"}
 OS_ARCHITECTURE=${2:-"arm"}
 
-echo "Cleanup and previous configurations"
-sudo rm /etc/consul-template.d/*
-sudo rm /etc/systemd/system/consul-template.service
-
 echo "creating consul-template user and config folders"
 sudo mkdir --parents /etc/consul-template.d
 sudo mkdir --parents /opt/consul-template
