@@ -1,5 +1,5 @@
 {
-  "ca_file": "/etc/consul.d/consul-agent-ca.pem",
+  "ca_file": "/etc/consul.d/keys/consul-agent-ca.pem",
   "auto_encrypt": {
     "tls": true
   },
