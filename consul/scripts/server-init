@@ -1,4 +1,7 @@
 # presumes consul service-init has already been run
-cp /home/pi/hashipi-config/consul/server.hcl /etc/consul.d/
-chmod 640 /etc/consul.d/server.hcl
-chown consul:consul /etc/consul.d -R
+sudo cp /home/pi/hashipi-config/consul/acl.hcl /etc/consul.d/
+sudo cp /home/pi/hashipi-config/consul/connect.hcl /etc/consul.d/
+sudo cp /home/pi/hashipi-config/consul/consul.hcl /etc/consul.d/
+sudo cp /home/pi/hashipi-config/consul/tls-server /etc/consul.d/
+sudo chmod 640 /etc/consul.d/ -R
+sudo chown consul:consul /etc/consul.d -R
