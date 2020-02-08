@@ -1,4 +1,4 @@
-alias cmon = "consul monitor"
+alias cmon="consul monitor"
 alias crl="consul reload"
 alias crs="sudo systemctl restart consul.service"
 alias cst="sudo systemctl status consul.service"
