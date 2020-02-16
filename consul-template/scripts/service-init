@@ -29,7 +29,7 @@ consul-template -autocomplete-install
 complete -C /usr/local/sbin/consul-template consul-template
 
 echo "starting consul-template"
-cp /home/pi/hashipi-config/consul-template/consul-template.service /etc/systemd/system/
+sudo cp /home/pi/hashipi-config/consul-template/consul-template.service /etc/systemd/system/
 sudo systemctl enable consul-template
 sudo systemctl start consul-template
 sudo systemctl status consul-template
