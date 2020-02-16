@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo mkdir /opt/nomad/templates
+sudo cp /home/pi/hashipi-config/nomad/templates/cli/* /opt/nomad/templates/
+sudo cp /home/pi/hashipi-config/nomad/templates/server/* /opt/nomad/templates/
+
+sudo chown nomad:nomad /opt/nomad -R
