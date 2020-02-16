@@ -16,5 +16,5 @@ wget --output-document=consul-template.zip https://releases.hashicorp.com/consul
 
 unzip consul-template.zip
 sudo chown root:root consul-template
-sudo mv consul-template /usr/local/bin/
+sudo mv consul-template /usr/local/sbin/
 rm consul-template.zip
