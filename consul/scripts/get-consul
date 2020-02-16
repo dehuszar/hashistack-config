@@ -9,7 +9,7 @@
 # TODO :: implement flag enumeration so they don't have to be ordered
 # i.e. if I want to override 2, I have to provide 1
 
-CONSUL_VERSION=${1:-"1.6.3"}
+CONSUL_VERSION=${1:-"1.7.0"}
 OS_ARCHITECTURE=${2:-"armhfv6"}
 
 sudo bash ../../scripts/get-binary consul ${CONSUL_VERSION} ${OS_ARCHITECTURE}
