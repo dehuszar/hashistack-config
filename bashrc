@@ -114,6 +114,7 @@ fi
 
 complete -C /usr/local/bin/nomad nomad
 complete -C /usr/local/bin/consul consul
+complete -C /usr/local/bin/consul-template consul-template
 complete -C /usr/local/bin/vault vault
 
 export NOMAD_ADDR="https://localhost:4646"
@@ -121,12 +122,14 @@ export NOMAD_CACERT="/opt/nomad/agent-certs/ca.crt"
 export NOMAD_CLIENT_CERT="/opt/nomad/cli-certs/cli.crt"
 export NOMAD_CLIENT_KEY="/opt/nomad/cli-certs/cli.key"
 
-export CONSUL_HTTP_ADDR="https://localhost:8501"
+export CONSUL_ADDR="https://localhost:8501"
+export CONSUL_HTTP_ADDR=https://localhost:8501
 export CONSUL_CACERT="/etc/consul.d/keys/consul-agent-ca.pem"
 export CONSUL_CLIENT_CERT="/etc/consul.d/keys/home-cli-consul-0.pem"
 export CONSUL_CLIENT_KEY="/etc/consul.d/keys/home-cli-consul-0-key.pem"
 
 export VAULT_ADDR="https://localhost:8200"
+export VAULT_AGENT_ADDR=https://127.0.0.1:8200
 export VAULT_CACERT="/usr/local/share/ca-certificates/local/tls-ca.crt"
 export VAULT_CLIENT_CERT="/etc/vault.d/keys/tls.pem"
 export VAULT_CLIENT_KEY="/etc/vault.d/keys/tls-key.pem"
