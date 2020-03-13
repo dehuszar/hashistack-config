@@ -6,7 +6,7 @@ vault {
   address      = "https://vault.service.consul:8200"
 
   # This value can also be specified via the environment variable VAULT_TOKEN.
-  token        = "REPLACE_WITH_VAULT_TOKEN"
+  # token        = "REPLACE_WITH_VAULT_TOKEN"
 
   # This should also be less than or around 1/3 of your TTL for a predictable
   # behaviour. See https://github.com/hashicorp/vault/issues/3414
@@ -41,12 +41,12 @@ syslog {
 template {
   # This is the source file on disk to use as the input template. This is often
   # called the "Consul Template template". 
-  source      = "/opt/nomad/templates/agent.crt.tpl"
+  source      = "/opt/vault/templates/agent.crt.tpl"
 
   # This is the destination path on disk where the source template will render.
   # If the parent directories do not exist, Consul Template will attempt to
   # create them, unless create_dest_dirs is false.
-  destination = "/opt/nomad/agent-certs/agent.crt"
+  destination = "/opt/vault/agent-certs/agent.crt"
 
   # This is the permission to render the file. If this option is left
   # unspecified, Consul Template will attempt to match the permissions of the
@@ -56,30 +56,30 @@ template {
 
   # This is the optional command to run when the template is rendered. The
   # command will only run if the resulting template changes. 
-  command     = "systemctl reload nomad"
+  command     = "systemctl reload vault"
 }
 
 template {
-  source      = "/opt/nomad/templates/agent.key.tpl"
-  destination = "/opt/nomad/agent-certs/agent.key"
+  source      = "/opt/vault/templates/agent.key.tpl"
+  destination = "/opt/vault/agent-certs/agent.key"
   perms       = 0700
-  command     = "systemctl reload nomad"
+  command     = "systemctl reload vault"
 }
 
 template {
-  source      = "/opt/nomad/templates/ca.crt.tpl"
-  destination = "/opt/nomad/agent-certs/ca.crt"
-  command     = "systemctl reload nomad"
+  source      = "/opt/vault/templates/ca.crt.tpl"
+  destination = "/opt/vault/agent-certs/ca.crt"
+  command     = "systemctl reload vault"
 }
 
 # The following template stanzas are for the CLI certs
 
 template {
-  source      = "/opt/nomad/templates/cli.crt.tpl"
-  destination = "/opt/nomad/cli-certs/cli.crt"
+  source      = "/opt/vault/templates/cli.crt.tpl"
+  destination = "/opt/vault/cli-certs/cli.crt"
 }
 
 template {
-  source      = "/opt/nomad/templates/cli.key.tpl"
-  destination = "/opt/nomad/cli-certs/cli.key"
+  source      = "/opt/vault/templates/cli.key.tpl"
+  destination = "/opt/vault/cli-certs/cli.key"
 }
