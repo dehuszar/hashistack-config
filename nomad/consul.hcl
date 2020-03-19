@@ -17,7 +17,7 @@ consul {
     "traefik.http.services.nomad.loadbalancer.healthcheck.interval=10",
     "traefik.http.services.nomad.loadbalancer.healthcheck.port=443",
     "traefik.http.services.nomad.loadbalancer.healthcheck.scheme=https",
-    "traefik.http.services.nomad.loadbalancer.healthcheck.timeout=10"
+    "traefik.http.services.nomad.loadbalancer.healthcheck.timeout=10",
     "traefik.http.services.nomad.loadbalancer.passhostheader=true",
     "traefik.http.services.nomad.loadbalancer.server.port=4646",
     "traefik.http.services.nomad.loadbalancer.server.scheme=https",
