@@ -8,6 +8,14 @@ vault {
   # This value can also be specified via the environment variable VAULT_TOKEN.
   # token        = "REPLACE_WITH_VAULT_TOKEN"
 
+  # This tells Consul Template to load the Vault token from the contents of a file.
+  # If this field is specified:
+  # - by default Consul Template will not try to renew the Vault token, if you want it
+  # to renew you will need to specify renew_token = true as below.
+  # - Consul Template will periodically stat the file and update the token if it has
+  # changed.
+  vault_agent_token_file = "/opt/vault/tokens/nomad"
+
   # This should also be less than or around 1/3 of your TTL for a predictable
   # behaviour. See https://github.com/hashicorp/vault/issues/3414
   # grace        = "1s"
