@@ -9,7 +9,7 @@
 # TODO :: implement flag enumeration so they don't have to be ordered
 # i.e. if I want to override 2, I have to provide 1
 
-VAULT_VERSION=${1:-"1.3.2"}
+VAULT_VERSION=${1:-"1.4.0"}
 OS_ARCHITECTURE=${2:-"arm"}
 
 sudo bash ${HOME}/hashipi-config/scripts/get-binary vault ${VAULT_VERSION} ${OS_ARCHITECTURE}
