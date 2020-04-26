@@ -12,4 +12,4 @@
 VAULT_VERSION=${1:-"1.4.0"}
 OS_ARCHITECTURE=${2:-"arm"}
 
-sudo bash ${HOME}/hashipi-config/scripts/get-binary vault ${VAULT_VERSION} ${OS_ARCHITECTURE}
+sudo bash ./get-binary vault ${VAULT_VERSION} ${OS_ARCHITECTURE}

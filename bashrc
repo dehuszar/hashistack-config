@@ -131,5 +131,5 @@ export CONSUL_CLIENT_KEY="/etc/consul.d/keys/home-cli-consul-0-key.pem"
 export VAULT_ADDR="https://localhost:8200"
 export VAULT_AGENT_ADDR=https://127.0.0.1:8200
 export VAULT_CACERT="/usr/local/share/ca-certificates/local/tls-ca.crt"
-export VAULT_CLIENT_CERT="/etc/vault.d/keys/tls.pem"
-export VAULT_CLIENT_KEY="/etc/vault.d/keys/tls-key.pem"
+export VAULT_CLIENT_CERT="/opt/vault/cli-certs/cli.crt"
+export VAULT_CLIENT_KEY="/opt/vault/cli-certs/cli.key"
