@@ -11,10 +11,6 @@
 
 CONSUL_VERSION=${1:-"0.24.1"}
 OS_ARCHITECTURE=${2:-"arm"}
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-wget --output-document=consul-template.zip https://releases.hashicorp.com/consul-template/${CONSUL_VERSION}/consul-template_${CONSUL_VERSION}_linux_${OS_ARCHITECTURE}.zip
-
-unzip consul-template.zip
-sudo chown root:root consul-template
-sudo mv consul-template /usr/local/sbin/
-rm consul-template.zip
+sudo bash ${DIR}/get-binary consul-template ${CONSUL_VERSION} ${OS_ARCHITECTURE}

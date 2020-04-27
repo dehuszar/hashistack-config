@@ -11,5 +11,6 @@
 
 VAULT_VERSION=${1:-"1.4.0"}
 OS_ARCHITECTURE=${2:-"arm"}
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-sudo bash ./get-binary vault ${VAULT_VERSION} ${OS_ARCHITECTURE}
+sudo bash ${DIR}/get-binary vault ${VAULT_VERSION} ${OS_ARCHITECTURE}

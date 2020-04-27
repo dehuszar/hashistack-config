@@ -11,5 +11,6 @@
 
 CONSUL_VERSION=${1:-"1.7.2"}
 OS_ARCHITECTURE=${2:-"armhfv6"}
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-sudo bash ./get-binary consul ${CONSUL_VERSION} ${OS_ARCHITECTURE}
+sudo bash ${DIR}/get-binary consul ${CONSUL_VERSION} ${OS_ARCHITECTURE}
