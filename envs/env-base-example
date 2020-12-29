@@ -1,0 +1,2 @@
+export HOSTNAME=$(hostname)
+export IP_ADDRESS=$(ifconfig eth0 | grep inet | grep -v inet6 | awk '{print $2}')

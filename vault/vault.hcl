@@ -1,22 +1,29 @@
 // opting for the new vault storage option, and not linking to an external consul cluster
-storage "raft" {
-  path    = "/opt/vault/"
-  node_id = "node1"
+storage "raft" {}
+
+service_registration "consul" {
+  address = "https://localhost:8501"
+  tls_ca_file = "/etc/certs/ca.crt"
+  tls_cert_file = "/etc/certs/consul-client-agent.crt"
+  tls_key_file = "/etc/certs/consul-client-agent.key"
+  token = ""
 }
 
 listener "tcp" {
   address     = "127.0.0.1:8200"
-  tls_disable = false
+  tls_disable = true
+  tls_disable_client_certs = "true"
 }
 
-// duplicate the contents of the above listener with the resolvable ip address
-// of the node to be able to access the ui from the local network
-// listener "tcp" {
-//   address     = "127.0.0.1:8200"
-//   tls_disable = false
-// }
+listener "tcp" {
+  address     = "${IP_ADDRESS}:8200"
+  tls_disable = true
+  tls_disable_client_certs = "true"
+}
 
-api_addr     = "https://127.0.0.1:8200"
-cluster_addr = "https://127.0.0.1:8201"
-disable_mlock = true
-ui=true
+telemetry {
+  prometheus_retention_time = "48h"
+  disable_hostname = true
+}
+
+log_level = "INFO"

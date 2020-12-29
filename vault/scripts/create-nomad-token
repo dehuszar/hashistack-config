@@ -1,1 +1,1 @@
-sudo -S -u vault vault token create -policy="nomad-cluster-tls-policy" -period=24h -orphan
+sudo -S -u vault vault token create -policy="agent-cluster-tls-policy" -period=24h -orphan
