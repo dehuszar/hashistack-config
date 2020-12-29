@@ -15,12 +15,6 @@ listener "tcp" {
   tls_disable_client_certs = "true"
 }
 
-listener "tcp" {
-  address     = "${IP_ADDRESS}:8200"
-  tls_disable = true
-  tls_disable_client_certs = "true"
-}
-
 telemetry {
   prometheus_retention_time = "48h"
   disable_hostname = true

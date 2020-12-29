@@ -9,12 +9,12 @@
 # TODO :: implement flag enumeration so they don't have to be ordered
 # i.e. if I want to override 2, I have to provide 1
 
-BINARY_NAME=${1:-"nomad"}
-BINARY_VERSION=${2:-"0.11.1"}
-OS_ARCHITECTURE=${3:-"arm"}
+BINARY_NAME=${1:-""}
+BINARY_VERSION=${2:-""}
+OS_ARCHITECTURE=${3:-""}
 
-wget --output-document=${BINARY_NAME}.zip https://releases.hashicorp.com/${BINARY_NAME}/${BINARY_VERSION}/${BINARY_NAME}_${BINARY_VERSION}_linux_${OS_ARCHITECTURE}.zip
-unzip ${BINARY_NAME}.zip
-sudo chown root:root ${BINARY_NAME}
-sudo mv ${BINARY_NAME} /usr/local/bin/
-rm ${BINARY_NAME}.zip
+wget --output-document=${HOME}/${BINARY_NAME}.zip https://releases.hashicorp.com/${BINARY_NAME}/${BINARY_VERSION}/${BINARY_NAME}_${BINARY_VERSION}_linux_${OS_ARCHITECTURE}.zip
+unzip ${HOME}/${BINARY_NAME}.zip -d ${HOME}
+sudo chown root:root ${HOME}/${BINARY_NAME}
+sudo mv ${HOME}/${BINARY_NAME} /usr/local/bin/
+rm ${HOME}/${BINARY_NAME}.zip
