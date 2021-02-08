@@ -1,19 +1,8 @@
-export AWS_ACCESS_KEY_ID=xxxxxxxxxxxx
-export AWS_REGION=us-east-1
-export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxx
-export HOSTNAME=$(hostname)
-export IP_ADDRESS=$(ifconfig eth0 | grep inet | grep -v inet6 | awk '{print $2}')
-export VAULT_ADDR="https://localhost:8200"
-export VAULT_AGENT_ADDR="https://127.0.0.1:8200"
-export VAULT_API_ADDR=`printf $(echo $IP_ADDRESS):8200`
-export VAULT_AWSKMS_SEAL_KEY_ID=xxxxxxxxxxxx
-export VAULT_CACERT="/etc/certs/ca.crt"
-export VAULT_CLIENT_CERT="/etc/certs/vault-cli.crt"
-export VAULT_CLIENT_KEY="/etc/certs/vault-cli.key"
-export VAULT_CLUSTER_ADDR=`printf $(echo $IP_ADDRESS):8201`
+#!/bin/bash
+
 export VAULT_DISABLE_MLOCK=true
+export VAULT_LOG_LEVEL=trace
+export VAULT_LOG_FORMAT=standard
 export VAULT_RAFT_NODE_ID=`printf $(echo $HOSTNAME)`
 export VAULT_RAFT_PATH="/opt/vault/"
-export VAULT_SEAL_TYPE=awskms
-export VAULT_SKIP_VERIFY=true
-export VAULT_UI=true
+export VAULT_TOKEN="xxxxxxxxxxxx"

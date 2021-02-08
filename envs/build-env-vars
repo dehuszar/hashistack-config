@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for e in /etc/envs/.env-*; do
+    . $e
+done
