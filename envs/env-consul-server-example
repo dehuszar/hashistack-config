@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONSUL_SERVER=true
+export CONSUL_BOOTSTRAP_EXPECT=3
+export CONSUL_UI=true

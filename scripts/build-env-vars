@@ -1,7 +1,0 @@
-#!/bin/bash
-
-. /home/pi/.env-aws
-. /home/pi/.env-base
-. /home/pi/.env-vault
-
-exec "$@"

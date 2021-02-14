@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export VAULT_AWSKMS_SEAL_KEY_ID="xxxxxxxxxxxx"
+export VAULT_SEAL_TYPE="awskms"

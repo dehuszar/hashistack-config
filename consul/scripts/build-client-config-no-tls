@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source /etc/envs/build-env-vars
+
+sudo CONSUL_HTTP_ADDR=$CONSUL_HTTP_ADDR \
+CONSUL_HTTP_SSL=$CONSUL_HTTP_SSL \
+CONSUL_HTTP_SSL_VERIFY=$CONSUL_HTTP_SSL_VERIFY \
+    consul-template \
+        -config /etc/consul-template.d/configurations/consul/build-client-config-no-tls.hcl \
+        -once

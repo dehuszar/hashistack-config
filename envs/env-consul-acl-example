@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export CONSUL_ACL_ENABLED=true
+export CONSUL_ACL_DEFAULT_POLICY="deny"
+export CONSUL_ACL_DOWN_POLICY="extend-cache"
+export CONSUL_ACL_ENABLE_TOKEN_PERSISTENCE=true
