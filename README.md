@@ -24,13 +24,15 @@ Each wave's particulars will be described in more detail in READMEs tucked away 
 ### Wave 1 :: Deploy environment variables and use them to generate config files
 Most tutorials give you complete hcl files to use as reference for configuring your server and client agents, detailing a few sensible defaults with the sensitive bits redacted.  This is great, but if used as provided, requires a lot of wrenching on several minute details across several (in my case 12 RPi & 2 amd64) machines.  Doing things like bootstrapping the cluster and enabling https become incredibly tedious and error prone without putting a few layers of automation in place.
 
-This first wave will (utilizing stock env vars provided by each tool where available) deploy env files which contain values you would like to have each agent node utilize in the configuration file.  These will be consumed by Consul-Template in waves 4 & 5.
+This first wave will (utilizing stock env vars provided by each tool where available) deploy env files which contain values you would like to have each agent node utilize in the configuration file.  These will be consumed by Consul-Template in waves subsequent waves.
 
 ### Wave 2 :: Generating agent configs
-With our Agents now running (in non-TLS mode to start), we can start deploying our service config templates and scripts to allow Consul-Template to sew together Agent configurations for each product's client or server agent to run.
+In order to start Vault, we'll need to run some scripts to tell Consul-Template to generate our config files.  Having done so, the envs deployed in the previous step will have been stamped into place and Vault should run.
 
 ### Wave 3 :: Deploying service configurations via Terraform
-In most cases this will involve deploying configurations for ACL policies and roles, secrets backends, users, etc.  These things tend to be pretty proprietary and is out of the scope of this repo.  The only real assumption I'm making for this wave is that a PKI/CA configuration in Vault is being deployed to facilitate TLS certificate generation.
+With our Agents now running (in non-TLS mode to start), we can start deploying our configs for Vault itself.
+
+In most cases this will involve deploying configurations for ACL policies and roles, secrets backends, users, etc.  These things tend to be pretty proprietary to one's individual use-cases and is out of the scope of this repo.  The only real assumption I'm making for this wave is that a PKI/CA configuration in Vault is being deployed to facilitate TLS certificate generation.
 
 ### Wave 4 :: Generating certificates
 

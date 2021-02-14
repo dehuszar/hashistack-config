@@ -1,6 +1,0 @@
-#!/bin/bash
-
-export NOMAD_ADDR="https://localhost:4646"
-export NOMAD_CACERT="/etc/certs/ca.crt"
-export NOMAD_CLIENT_CERT="/etc/certs/nomad-cli.crt"
-export NOMAD_CLIENT_KEY="/etc/certs/nomad-cli.key"

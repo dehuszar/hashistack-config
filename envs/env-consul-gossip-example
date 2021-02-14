@@ -1,0 +1,3 @@
+#!/bin/bash
+
+export CONSUL_GOSSIP="rowT0mQfvxwHNvryeKq0GnDlWZdYOLFGCO86jDvbj8M="

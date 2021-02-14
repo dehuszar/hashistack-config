@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONSUL_HTTP_ADDR="http://localhost:8500"
+export CONSUL_HTTP_SSL=false
+export CONSUL_HTTP_SSL_VERIFY=true

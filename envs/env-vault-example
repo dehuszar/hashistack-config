@@ -5,4 +5,5 @@ export VAULT_LOG_LEVEL=trace
 export VAULT_LOG_FORMAT=standard
 export VAULT_RAFT_NODE_ID=`printf $(echo $HOSTNAME)`
 export VAULT_RAFT_PATH="/opt/vault/"
-export VAULT_TOKEN="xxxxxxxxxxxx"
+export VAULT_TOKEN="<VAULT AGENT TOKEN>"
+export VAULT_UI=true
