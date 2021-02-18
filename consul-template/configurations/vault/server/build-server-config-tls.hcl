@@ -10,7 +10,7 @@ template {
 }
 
 template {
-  source      = "/etc/consul-template.d/configurations/vault/templates/listener.hcl.tpl"
+  source      = "/etc/consul-template.d/configurations/vault/templates/listener-tls.hcl.tpl"
   destination = "/etc/vault.d/listener.hcl"
   perms       = 0600
 }

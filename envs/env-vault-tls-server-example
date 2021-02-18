@@ -7,4 +7,6 @@ export VAULT_CLUSTER_ADDR=`printf https://$(echo $IP_ADDRESS):8201`
 export VAULT_CACERT="/<PATH TO CERTIFICATES>/ca.crt"
 export VAULT_CLIENT_CERT="/<PATH TO CERTIFICATES>/vault-cli.crt"
 export VAULT_CLIENT_KEY="/<PATH TO CERTIFICATES>/vault-cli.key"
+export VAULT_SERVER_CERT="/<PATH TO CERTIFICATES>/vault-server-agent.crt"
+export VAULT_SERVER_KEY="/<PATH TO CERTIFICATES>/vault-server-agent.key"
 export VAULT_SKIP_VERIFY=false
