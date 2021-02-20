@@ -11,6 +11,12 @@ syslog {
 }
 
 template {
+  source      = "/etc/consul-template.d/certificates/vault/templates/ca.crt.tpl"
+  destination = "/etc/certs/vault-ca.crt"
+  perms       = 0444
+}
+
+template {
   source      = "/etc/consul-template.d/certificates/vault/templates/agent.crt.tpl"
   destination = "/etc/certs/vault-server-agent.crt"
   perms       = 0444
