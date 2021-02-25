@@ -1,0 +1,14 @@
+syslog {
+  enabled  = true
+  facility = "LOCAL5"
+}
+
+template {
+  source      = "/etc/consul-template.d/configurations/consul/server/templates/server.hcl.tpl"
+  destination = "/etc/consul.d/server.hcl"
+  perms       = 0444
+}
+
+exec {
+  command = "sudo bash -c 'chown consul:consul /etc/consul.d/*.hcl'"
+}

@@ -2,22 +2,16 @@
 
 source /etc/envs/build-env-vars
 
-sudo CONSUL_CLIENT_ADDR=$CONSUL_CLIENT_ADDR \
-CONSUL_DATA_DIR=$CONSUL_DATA_DIR \
-CONSUL_DATACENTER=$CONSUL_DATACENTER \
-CONSUL_PRIMARY_DATACENTER=$CONSUL_PRIMARY_DATACENTER \
-CONSUL_RETRY_JOIN1=$CONSUL_RETRY_JOIN1 \
-CONSUL_RETRY_JOIN2=$CONSUL_RETRY_JOIN2 \
-CONSUL_RETRY_JOIN3=$CONSUL_RETRY_JOIN3 \
-CONSUL_RAFT_MULTIPLIER=$CONSUL_RAFT_MULTIPLIER \
+sudo DOMAIN=$DOMAIN \
+    CONSUL_DATACENTER=$CONSUL_DATACENTER \
     consul-template \
-        -config /etc/consul-template.d/configurations/consul/build-client-config.hcl \
+        -config /etc/consul-template.d/certificates/consul/build-consul-client-certs.hcl -vault-addr $1 \
         -once
 
 sudo CONSUL_CACERT=$CONSUL_CACERT \
-CONSUL_CLIENT_CERT=$CONSUL_CLIENT_CERT \
-CONSUL_CLIENT_KEY=$CONSUL_CLIENT_KEY \
-CONSUL_HTTP_SSL_VERIFY=$CONSUL_HTTP_SSL_VERIFY \
-    consul-template \
-        -config /etc/consul-template.d/configurations/consul/build-tls.hcl \
-        -once
+    CONSUL_CLIENT_CERT=$CONSUL_CLIENT_CERT \
+    CONSUL_CLIENT_KEY=$CONSUL_CLIENT_KEY \
+    CONSUL_HTTP_SSL_VERIFY=$CONSUL_HTTP_SSL_VERIFY \
+        consul-template \
+            -config /etc/consul-template.d/configurations/consul/build-client-tls.hcl \
+            -once

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-ansible $1 -b -m copy -a "src=envs/.env-base dest=/etc/envs/"
-ansible $1 -b -m copy -a "src=envs/.env-consul-gossip dest=/etc/envs/"
