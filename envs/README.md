@@ -24,7 +24,7 @@ Depending on what you are trying to do, or what phase of setup you are in, some 
 - .env-nomad
 - .env-vault-base
 - .env-vault-no-tls
-- .env-vault-tls
+- .env-vault-tls-server
 
 None of these .env-* files are included in the repo.  There are example files to start you off, but you will need to create your own, as everyone's config will be slightly different, and values may also change over time; particularly when advancing from the no-tls configuration to an https setup.
 
