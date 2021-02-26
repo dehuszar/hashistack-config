@@ -6,31 +6,31 @@ syslog {
 template {
   source      = "/etc/consul-template.d/configurations/vault/templates/base.hcl.tpl"
   destination = "/etc/vault.d/base.hcl"
-  perms       = 0600
+  perms       = 0444
 }
 
 template {
-  source      = "/etc/consul-template.d/configurations/vault/templates/listener-tls.hcl.tpl"
+  source      = "/etc/consul-template.d/configurations/vault/templates/listener-no-tls.hcl.tpl"
   destination = "/etc/vault.d/listener.hcl"
-  perms       = 0600
+  perms       = 0444
 }
 
 template {
   source      = "/etc/consul-template.d/configurations/vault/templates/seal.hcl.tpl"
   destination = "/etc/vault.d/seal.hcl"
-  perms       = 0600
+  perms       = 0444
 }
 
 template {
   source      = "/etc/consul-template.d/configurations/vault/templates/storage.hcl.tpl"
   destination = "/etc/vault.d/storage.hcl"
-  perms       = 0600
+  perms       = 0444
 }
 
 template {
   source      = "/etc/consul-template.d/configurations/vault/templates/telemetry.hcl.tpl"
   destination = "/etc/vault.d/telemetry.hcl"
-  perms       = 0600
+  perms       = 0444
 }
 
 exec {

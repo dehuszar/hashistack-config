@@ -6,7 +6,7 @@ syslog {
 template {
   source      = "/etc/consul-template.d/configurations/vault/templates/consul.hcl.tpl"
   destination = "/etc/vault.d/consul.hcl"
-  perms       = 0600
+  perms       = 0444
 }
 
 exec {

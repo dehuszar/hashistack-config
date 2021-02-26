@@ -1,4 +1,0 @@
-#!/bin/bash
-
-ansible $1 -b -m copy -a "src=consul-template/certificates/vault/cli/ dest=/etc/consul-template.d/certificates/vault"
-ansible $1 -b -m copy -a "src=consul-template/certificates/vault/server/ dest=/etc/consul-template.d/certificates/vault"

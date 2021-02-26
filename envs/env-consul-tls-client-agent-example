@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CONSUL_HTTP_ADDR="https://localhost:8501"
-export CONSUL_CACERT="/<YOUR PATH TO CERTIFICATES>/ca.crt"
+export CONSUL_CACERT="/<YOUR PATH TO CERTIFICATES>/consul-ca.crt"
 export CONSUL_CLIENT_CERT="/<YOUR PATH TO CERTIFICATES>/consul-client-agent.crt"
 export CONSUL_CLIENT_KEY="/<YOUR PATH TO CERTIFICATES>/consul-client-agent.key"
 export CONSUL_HTTP_SSL=true
