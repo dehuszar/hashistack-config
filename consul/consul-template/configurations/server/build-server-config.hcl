@@ -4,7 +4,7 @@ syslog {
 }
 
 template {
-  source      = "/etc/consul-template.d/configurations/consul/server/templates/server.hcl.tpl"
+  source      = "/etc/consul-template.d/configurations/consul/templates/server.hcl.tpl"
   destination = "/etc/consul.d/server.hcl"
   perms       = 0444
 }

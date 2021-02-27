@@ -9,6 +9,9 @@ sudo DOMAIN=$DOMAIN \
         -config /etc/consul-template.d/certificates/consul/build-consul-server-certs.hcl -vault-addr $1 \
         -once
 
+sudo ln -s /etc/certs/consul-ca.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+
 sudo CONSUL_CACERT=$CONSUL_CACERT \
     CONSUL_SERVER_CERT=$CONSUL_SERVER_CERT \
     CONSUL_SERVER_KEY=$CONSUL_SERVER_KEY \
