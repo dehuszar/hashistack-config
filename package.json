@@ -1,0 +1,12 @@
+{
+  "name": "hashistack-config",
+  "version": "1.0.0",
+  "author": "Samuel deHuszar Allen",
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "dependencies": {
+    "esm": "^3.2.25",
+    "got": "^11.8.2"
+  }
+}
