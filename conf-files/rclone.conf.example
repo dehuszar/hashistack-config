@@ -1,0 +1,13 @@
+# write to ~/.config/rclone.conf
+
+[Wasabi]
+type = s3
+env_auth = true
+access_key_id = <AWS_STYLE_ACCESS_KEY_ID>
+secret_access_key = <AWS_STYLE_SECRET_ACCESS_KEY>
+region = us-east-1
+endpoint = s3.wasabisys.com
+location_constraint = 
+acl = private
+server_side_encryption = 
+storage_class = 

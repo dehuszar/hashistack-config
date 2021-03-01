@@ -1,3 +1,11 @@
 .env*
 *.snapshot
 *.json
+!package.json
+*.conf
+node_modules
+
+# allows examples and core structure to be committed to the repo, but ignores all other files
+**/cron.d/client/*
+**/cron.d/server/*
+!**/cron.d/**/*-example

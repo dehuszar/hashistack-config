@@ -1,0 +1,3 @@
+#!/bin/bash
+ansible $1 -a "mkdir -p ~/.config/rclone"
+ansible $1 -m copy -a "src=conf-files/rclone.conf dest=.config/rclone/"
