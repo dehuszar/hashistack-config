@@ -41,5 +41,5 @@ template {
 }
 
 exec {
-  command = "systemctl reload consul"
+  command = "consul reload"
 }

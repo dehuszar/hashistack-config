@@ -1,5 +1,5 @@
 # install this cron definition on all Consul servers
 # take vault snapshot, backup snapshot to object store, delete local copy of snapshot
-# 0 0 * * SUN consul snapshot save $(date +%F)-$(hostname).snapshot
-# 0 1 * * SUN rclone copy ./$(date +%F)-$(hostname).snapshot Wasabi:<replace-with-your-bucket-name>/consul/snapshots/ -v
-# 0 5 * * SUN rm ./$(date +%F)-$(hostname).snapshot
+# 0 0 * * SUN consul consul snapshot save $(date +%F)-$(hostname).snapshot
+# 0 1 * * SUN root rclone copy ./$(date +%F)-$(hostname).snapshot Wasabi:<replace-with-your-bucket-name>/consul/snapshots/ -v
+# 0 5 * * SUN root rm ./$(date +%F)-$(hostname).snapshot
