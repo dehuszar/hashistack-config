@@ -1,0 +1,2 @@
+#!/bin/bash
+vault write -address https://vault.***REMOVED***:8200 pki/tidy tidy_cert_store=true tidy_revoked_certs=true safety_buffer=1s
