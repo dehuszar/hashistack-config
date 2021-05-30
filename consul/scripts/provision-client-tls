@@ -2,9 +2,9 @@
 #!/bin/bash
 
 # envs
-ansible $1 -b -a "rm /etc/envs/.env-consul-no-tls"
-ansible $1 -b -m copy -a "src=envs/.env-consul-tls-client-agent dest=/etc/envs/"
+ansible $1 -b -a "rm /etc/envs/.env-consul-no-tls" $2
+ansible $1 -b -m copy -a "src=envs/.env-consul-tls-client-agent dest=/etc/envs/" $2
 
 # templates
-ansible $1 -b -m copy -a "src=consul/consul-template/certificates/cli/ dest=/etc/consul-template.d/certificates/consul"
-ansible $1 -b -m copy -a "src=consul/consul-template/certificates/client/ dest=/etc/consul-template.d/certificates/consul"
+ansible $1 -b -m copy -a "src=consul/consul-template/certificates/cli/ dest=/etc/consul-template.d/certificates/consul" $2
+ansible $1 -b -m copy -a "src=consul/consul-template/certificates/client/ dest=/etc/consul-template.d/certificates/consul" $2
