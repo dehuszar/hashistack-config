@@ -1,0 +1,1 @@
+{{ with secret "pki_int/issue/agent-cluster" "common_name=vault.service.consul" "ttl=720h"}}{{ .Data.issuing_ca }}{{ end }}
