@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # The $2 args are intended to be for passing in --ask-become-pass flags as needed
 # envs

@@ -5,4 +5,4 @@ Description=Bi-weekly-ish cert rotation service
 User=root
 Group=root
 EnvironmentFile={{ or ( env "CONSUL_SERVER_CERT_GEN_TIMER_PERSISTENT" ) "/etc/systemd/system/consul-server-cert-gen.d/consul-server-cert-gen.service.conf" }}
-ExecStart=/bin/bash -c "/usr/local/bin/consul-template -config=/etc/consul-template.d/certificates/consul/build-consul-server-certs.hcl -log-level=debug -once"
+ExecStart=/bin/bash -c "sudo bash /etc/consul-template.d/certificates/consul/build-consul-server-certs.sh"

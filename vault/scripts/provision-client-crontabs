@@ -1,2 +1,0 @@
-ansible $1 -b -m copy -a "src=vault/scripts/cron.d/client/vault-client-cert-backup-generate dest=/etc/cron.d/"
-ansible $1 -b -a "sudo chown root:root /etc/cron.d -R"

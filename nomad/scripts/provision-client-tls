@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # remove any conflicting envs
 ansible $1 -b -a "rm /etc/envs/.env-nomad-no-tls"

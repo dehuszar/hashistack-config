@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # this allows the script to take params to override the defaults; e.g.
 # bash service-init 1.6.2 amd64

@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source /etc/envs/build-env-vars
 
-sudo DOMAIN=$DOMAIN \
+DOMAIN=$DOMAIN \
     CONSUL_DATACENTER=$CONSUL_DATACENTER \
     HOSTNAME=$HOSTNAME \
     VAULT_AGENT_ADDR=$VAULT_AGENT_ADDR \

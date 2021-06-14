@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # envs
 ansible $1 -b -a "rm /etc/envs/.env-consul-no-tls"

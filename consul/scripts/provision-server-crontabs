@@ -1,3 +1,0 @@
-ansible $1 -b -m copy -a "src=consul/scripts/cron.d/server/consul-server-cert-backup-generate dest=/etc/cron.d/"
-ansible $1 -b -m copy -a "src=consul/scripts/cron.d/server/consul-snapshot-backup-generate dest=/etc/cron.d/"
-ansible $1 -b -a "sudo chown root:root /etc/cron.d -R"

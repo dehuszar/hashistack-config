@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/usr/bin/env bash
 sudo chown -R nomad:nomad /etc/nomad.d /opt/nomad

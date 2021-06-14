@@ -1,4 +1,0 @@
-# install this cron definition on all Nomad servers
-# backup certs/keys and print new certificates
-0 0 1,10,20 * * root cp -r /etc/certs/nomad*.* /etc/certs/backup
-2 0 1,10,20 * * root bash /etc/consul-template.d/certificates/nomad/build-nomad-server-certs.sh 2>&1 | logger -t nomadservercertgen

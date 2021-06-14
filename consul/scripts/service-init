@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 echo "creating consul user and config folders"
 sudo mkdir --parents /etc/consul.d
 sudo mkdir --parents /opt/consul
