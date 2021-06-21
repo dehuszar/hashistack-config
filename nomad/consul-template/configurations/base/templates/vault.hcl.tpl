@@ -3,11 +3,9 @@
 
 vault {
   enabled = {{ env "NOMAD_VAULT_ENABLED" }}
-  address = {{ env "VAULT_ADDR" }}
-  ca_file = {{ env "NOMAD_VAULT_CACERT" }}
-  cert_file = {{ env "VAULT_CLIENT_CERT" }}
-  key_file = {{ env "VAULT_CLIENT_KEY" }}
-  {{ if env "NOMAD_VAULT_CREATE_FROM_ROLE" | parseBool }}
-    create_from_role = {{ env "NOMAD_VAULT_CREATE_FROM_ROLE"}}
-  {{ end }}
+  address = "{{ env "VAULT_ADDR" }}"
+  ca_file = "{{ env "VAULT_CACERT" }}"
+  cert_file = "{{ env "VAULT_CLIENT_CERT" }}"
+  key_file = "{{ env "VAULT_CLIENT_KEY" }}"
+  {{ if env "NOMAD_VAULT_CREATE_FROM_ROLE" | parseBool }}create_from_role = "{{ env "NOMAD_VAULT_CREATE_FROM_ROLE"}}"{{ end }}
 }

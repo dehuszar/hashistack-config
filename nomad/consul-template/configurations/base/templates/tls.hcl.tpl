@@ -11,7 +11,7 @@ tls {
     key_file  = {{ env "NOMAD_CLIENT_KEY" }}
   {{ end }}
 
-  rpc_upgrade_mode       = {{ env "RPC_UPGRADE_MODE" }} 
-  verify_server_hostname = {{ env "VERIFY_SERVER_HOSTNAME" }}
-  verify_https_client    = {{ env "VERIFY_HTTPS_CLIENT" }}
+  rpc_upgrade_mode       = {{ env "NOMAD_RPC_UPGRADE_MODE" }} 
+  verify_server_hostname = {{ env "NOMAD_VERIFY_SERVER_HOSTNAME" }}
+  verify_https_client    = {{ env "NOMAD_VERIFY_HTTPS_CLIENT" }}
 }

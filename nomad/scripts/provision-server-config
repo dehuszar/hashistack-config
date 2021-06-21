@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
 # envs
-ansible $1 -b -m copy -a "src=envs/build-env-vars dest=/etc/envs/"
-ansible $1 -b -m copy -a "src=envs/.env-base dest=/etc/envs/"
-ansible $1 -b -m copy -a "src=envs/.env-nomad-base dest=/etc/envs/"
+ansible $1 -b -m copy -a "src=envs/build-env-vars dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-base dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-nomad-acl dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-nomad-base dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-nomad-plugins dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-nomad-server dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-nomad-telemetry dest=/etc/envs/" $2
+ansible $1 -b -m copy -a "src=envs/.env-nomad-tls-server dest=/etc/envs/" $2
 
 # templates
-ansible $1 -b -m copy -a "src=nomad/consul-template/configurations/server/ dest=/etc/consul-template.d/configurations/nomad"
+ansible $1 -b -m copy -a "src=nomad/consul-template/configurations/base/ dest=/etc/consul-template.d/configurations/nomad" $2
+ansible $1 -b -m copy -a "src=nomad/consul-template/configurations/server/ dest=/etc/consul-template.d/configurations/nomad" $2
+
+# scripts
+ansible $1 -b -m copy -a "src=nomad/scripts/build-server-config-tls dest=/etc/consul-template.d/configurations/nomad" $2
