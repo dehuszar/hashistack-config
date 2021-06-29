@@ -39,5 +39,5 @@ template {
 }
 
 exec {
-  command = "consul reload"
+  command = "sudo systemctl restart consul"
 }

@@ -17,25 +17,25 @@ template {
 }
 
 template {
-  source      = "/etc/certs/templates/nomad/server/agent.crt.tpl"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/agent.crt.tpl"
   destination = "/etc/certs/nomad-server-agent.crt"
   perms       = 0444
 }
 
 template {
-  source      = "/etc/certs/templates/nomad/server/agent.key.tpl"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/agent.key.tpl"
   destination = "/etc/certs/nomad-server-agent.key"
   perms       = 0444
 }
 
 template {
-  source      = "/etc/certs/templates/nomad/cli/cli.crt.tpl"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/cli.crt.tpl"
   destination = "/etc/certs/nomad-cli.crt"
   perms       = 0444
 }
 
 template {
-  source      = "/etc/certs/templates/nomad/cli/cli.key.tpl"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/cli.key.tpl"
   destination = "/etc/certs/nomad-cli.key"
   perms       = 0444
 }

@@ -1,1 +1,1 @@
-{{ with secret "pki_int/issue/agent-cluster" "common_name=server.global.nomad" "ttl=720h"}}{{ .Data.issuing_ca }}{{ end }}
+{{ with secret "pki_int/issue/agent-cluster" "common_name=nomad.service.consul" "ttl=720h"}}{{ .Data.issuing_ca }}{{ end }}

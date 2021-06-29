@@ -9,3 +9,5 @@ ansible $1 -b -m copy -a "src=envs/.env-consul-base dest=/etc/envs/" $2
 # templates
 ansible $1 -b -m copy -a "src=consul/consul-template/configurations/base/ dest=/etc/consul-template.d/configurations/consul" $2
 ansible $1 -b -m copy -a "src=consul/consul-template/configurations/client/ dest=/etc/consul-template.d/configurations/consul" $2
+
+ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/configurations/consul/build-client-config.sh" $2
