@@ -1,8 +1,0 @@
-#!/bin/bash
-# presumes nomad service-init has already been run
-sudo cp /home/pi/hashipi-config/nomad/client.hcl /etc/nomad.d/
-sudo cp /home/pi/hashipi-config/nomad/consul.hcl /etc/nomad.d/
-sudo cp /home/pi/hashipi-config/nomad/nomad.hcl /etc/nomad.d/
-sudo cp /home/pi/hashipi-config/nomad/telemetry.hcl /etc/nomad.d/
-sudo cp /home/pi/hashipi-config/nomad/vault.hcl /etc/nomad.d/
-sudo chown nomad:nomad /etc/nomad.d/

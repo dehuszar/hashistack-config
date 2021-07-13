@@ -1,5 +1,0 @@
-# install this cron definition on all Vault servers
-# backup certs/keys and print new certificates
-# 0 0 1,10,20 * * sudo cp -r /etc/certs/vault*.crt /etc/certs/backup
-# 0 0 1,10,20 * * sudo cp -r /etc/certs/vault*.key /etc/certs/backup
-# 2 0 1,10,20 * * sudo DOMAIN=$DOMAIN CONSUL_DATACENTER=$CONSUL_DATACENTER VAULT_TOKEN=$VAULT_TOKEN /usr/local/bin/consul-template -config=/etc/consul-template.d/certificates/vault/your-ct-server-config.hcl -log-level=debug -once

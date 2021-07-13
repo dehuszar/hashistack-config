@@ -1,5 +1,0 @@
-# install this cron definition on all Consul servers
-# backup certs/keys and print new certificates
-# 0 0 1,10,20 * * sudo cp -r /etc/certs/consul*.crt /etc/certs/backup
-# 0 0 1,10,20 * * sudo cp -r /etc/certs/consul*.key /etc/certs/backup
-# 2 0 1,10,20 * * sudo DOMAIN=$DOMAIN CONSUL_DATACENTER=$CONSUL_DATACENTER VAULT_TOKEN=$VAULT_TOKEN  $(which consul-template) -config=/etc/consul-template.d/certificates/consul/your-ct-server-config.hcl -vault-addr=https://vault.service.consul:8200 -log-level=debug -once

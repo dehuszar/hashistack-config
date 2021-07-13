@@ -1,6 +1,6 @@
 ca_file   = "{{ env "CONSUL_CACERT" }}"
-cert_file = "{{ env "CONSUL_CLIENT_AGENT_CERT" }}"
-key_file  = "{{ env "CONSUL_CLIENT_AGENT_KEY" }}"
+cert_file = "{{ env "CONSUL_CLIENT_CERT" }}"
+key_file  = "{{ env "CONSUL_CLIENT_KEY" }}"
 
 auto_encrypt {
     tls = true

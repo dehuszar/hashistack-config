@@ -1,4 +1,0 @@
-#!/bin/bash
-sudo cp /home/pi/hashipi-config/consul/consul.hcl /etc/consul.d/
-sudo chown --recursive consul:consul /opt/consul /etc/consul.d/
-sudo chmod 640 /etc/consul.d/ -R

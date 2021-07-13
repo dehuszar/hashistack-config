@@ -10,5 +10,5 @@ template {
 }
 
 exec {
-  command = "sudo bash -c 'chown consul:consul /etc/consul.d/*.hcl'"
+  command = "sudo bash -c 'chown consul:consul /etc/consul.d/*.hcl' && sudo systemctl daemon-reload && sudo systemctl restart consul"
 }

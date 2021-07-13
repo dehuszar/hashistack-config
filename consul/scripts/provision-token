@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ansible $1 -b -m copy -a "src=envs/.env-consul-token-$1 dest=/etc/envs/"

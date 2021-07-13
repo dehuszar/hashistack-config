@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for e in /etc/envs/.env-*; do
     . $e

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source /etc/envs/build-env-vars
+
+sudo CONSUL_GOSSIP=$CONSUL_GOSSIP \
+    consul-template \
+        -config /etc/consul-template.d/configurations/consul/build-gossip-encryption.hcl \
+        -once
+
