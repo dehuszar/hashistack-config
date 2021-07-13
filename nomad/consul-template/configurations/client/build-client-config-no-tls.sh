@@ -31,19 +31,8 @@ sudo CONSUL_HTTP_ADDR=$CONSUL_HTTP_ADDR \
             -config /etc/consul-template.d/configurations/nomad/build-base-consul.hcl \
             -once
 
-sudo NOMAD_SERVER_ENABLED=$NOMAD_ACL_ENABLED \
+sudo NOMAD_CLIENT_ENABLED=$NOMAD_ACL_ENABLED \
     NOMAD_BOOTSTRAP_EXPECT=$NOMAD_BOOTSTRAP_EXPECT \
         consul-template \
-            -config /etc/consul-template.d/configurations/nomad/build-server-config.hcl \
-            -once
-
-sudo NOMAD_VAULT_CREATE_FROM_ROLE=$NOMAD_VAULT_CREATE_FROM_ROLE \
-    NOMAD_VAULT_ENABLED=$NOMAD_VAULT_ENABLED \
-    VAULT_ADDR=$VAULT_ADDR \
-    VAULT_CACERT=$VAULT_CACERT \
-    VAULT_CLIENT_CERT=$VAULT_CLIENT_CERT \
-    VAULT_CLIENT_KEY=$VAULT_CLIENT_KEY \
-    VAULT_TOKEN=$VAULT_TOKEN \
-        consul-template \
-            -config /etc/consul-template.d/configurations/nomad/build-server-vault.hcl \
+            -config /etc/consul-template.d/configurations/nomad/build-client-config-tls.hcl \
             -once

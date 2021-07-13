@@ -11,5 +11,4 @@ ansible $1 -b -m copy -a "src=consul/consul-template/configurations/base/ dest=/
 ansible $1 -b -m copy -a "src=consul/consul-template/configurations/client/ dest=/etc/consul-template.d/configurations/consul" $2
 
 ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/configurations/consul/build-client-config.sh" $2
-ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/configurations/consul/build-client-certs.sh" $2
 ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/configurations/consul/build-client-config-tls.sh" $2

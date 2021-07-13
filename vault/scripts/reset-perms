@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-sudo chown -R vault:vault /etc/vault.d /opt/vault

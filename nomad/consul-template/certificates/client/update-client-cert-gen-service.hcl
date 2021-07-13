@@ -12,22 +12,22 @@ syslog {
 
 # EnvironmentFile
 template {
-  source      = "/etc/consul-template.d/certificates/consul/templates/client-cert-gen.service.conf.tpl"
-  destination = "/etc/systemd/system/consul-client-cert-gen.d/consul-client-cert-gen.service.conf"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/client-cert-gen.service.conf.tpl"
+  destination = "/etc/systemd/system/nomad-client-cert-gen.d/nomad-client-cert-gen.service.conf"
   perms       = 0444
 }
 
 # Service definition
 template {
-  source      = "/etc/consul-template.d/certificates/consul/templates/client-cert-gen.service.tpl"
-  destination = "/etc/systemd/system/consul-client-cert-gen.service"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/client-cert-gen.service.tpl"
+  destination = "/etc/systemd/system/nomad-client-cert-gen.service"
   perms       = 0444
 }
 
 # Timer
 template {
-  source      = "/etc/consul-template.d/certificates/consul/templates/client-cert-gen.timer.tpl"
-  destination = "/etc/systemd/system/consul-client-cert-gen.timer"
+  source      = "/etc/consul-template.d/certificates/nomad/templates/client-cert-gen.timer.tpl"
+  destination = "/etc/systemd/system/nomad-client-cert-gen.timer"
   perms       = 0444
 }
 

@@ -1,1 +1,0 @@
-sudo chown -R consul:consul /etc/consul.d/ /opt/consul

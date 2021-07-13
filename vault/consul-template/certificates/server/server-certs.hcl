@@ -39,3 +39,7 @@ template {
   destination = "/etc/certs/vault-cli.key"
   perms       = 0444
 }
+
+exec {
+  command = "sudo systemctl reload vault.service"
+}

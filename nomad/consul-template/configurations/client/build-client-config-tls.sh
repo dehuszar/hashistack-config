@@ -31,19 +31,21 @@ sudo CONSUL_HTTP_ADDR=$CONSUL_HTTP_ADDR \
             -config /etc/consul-template.d/configurations/nomad/build-base-consul.hcl \
             -once
 
-sudo NOMAD_SERVER_ENABLED=$NOMAD_ACL_ENABLED \
-    NOMAD_BOOTSTRAP_EXPECT=$NOMAD_BOOTSTRAP_EXPECT \
+sudo NOMAD_CACERT=$NOMAD_CACERT \
+    NOMAD_RPC_UPGRADE_MODE=$NOMAD_RPC_UPGRADE_MODE \
+    NOMAD_CLIENT_CERT=$NOMAD_CLIENT_CERT \
+    NOMAD_CLIENT_KEY=$NOMAD_CLIENT_KEY \
+    NOMAD_TLS_HTTP_ENABLED=$NOMAD_TLS_HTTP_ENABLED \
+    NOMAD_TLS_RPC_ENABLED=$NOMAD_TLS_RPC_ENABLED \
+    NOMAD_VERIFY_HTTPS_CLIENT=$NOMAD_VERIFY_HTTPS_CLIENT \
+    NOMAD_VERIFY_SERVER_HOSTNAME=$NOMAD_VERIFY_SERVER_HOSTNAME \
         consul-template \
-            -config /etc/consul-template.d/configurations/nomad/build-server-config.hcl \
+            -config /etc/consul-template.d/configurations/nomad/build-tls.hcl \
             -once
 
-sudo NOMAD_VAULT_CREATE_FROM_ROLE=$NOMAD_VAULT_CREATE_FROM_ROLE \
-    NOMAD_VAULT_ENABLED=$NOMAD_VAULT_ENABLED \
-    VAULT_ADDR=$VAULT_ADDR \
-    VAULT_CACERT=$VAULT_CACERT \
-    VAULT_CLIENT_CERT=$VAULT_CLIENT_CERT \
-    VAULT_CLIENT_KEY=$VAULT_CLIENT_KEY \
-    VAULT_TOKEN=$VAULT_TOKEN \
+sudo NOMAD_CLIENT_ENABLED=$NOMAD_ACL_ENABLED \
+    NOMAD_OPTIONS_DRIVER_RAW_EXEC=$NOMAD_OPTIONS_DRIVER_RAW_EXEC \
+    NOMAD_OPTIONS_DOCKER_PRIVILEGED_ENABLED=$NOMAD_OPTIONS_DOCKER_PRIVILEGED_ENABLED \
         consul-template \
-            -config /etc/consul-template.d/configurations/nomad/build-server-vault.hcl \
+            -config /etc/consul-template.d/configurations/nomad/build-client-config.hcl \
             -once

@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-sudo cp /home/pi/hashipi-config/nomad/nomad.hcl /etc/nomad.d/
-sudo chown --recursive nomad:nomad /opt/nomad /etc/nomad.d/
-chmod 700 /etc/nomad.d/ -R
