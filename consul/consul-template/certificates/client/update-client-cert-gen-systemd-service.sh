@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# FIXME :: service not seeing token
 source /etc/envs/build-env-vars
 
 sudo systemctl daemon-reload
