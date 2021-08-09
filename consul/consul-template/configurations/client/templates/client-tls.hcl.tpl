@@ -3,7 +3,7 @@ cert_file = "{{ env "CONSUL_CLIENT_CERT" }}"
 key_file  = "{{ env "CONSUL_CLIENT_KEY" }}"
 
 auto_encrypt {
-    tls = true
+    tls = false
 }
 
 # This applies to clients and servers as both will make outgoing connections.

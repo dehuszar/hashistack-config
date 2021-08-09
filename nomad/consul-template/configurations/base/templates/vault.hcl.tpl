@@ -7,5 +7,5 @@ vault {
   ca_file = "{{ env "VAULT_CACERT" }}"
   cert_file = "{{ env "VAULT_CLIENT_CERT" }}"
   key_file = "{{ env "VAULT_CLIENT_KEY" }}"
-  {{ if env "NOMAD_VAULT_CREATE_FROM_ROLE" | parseBool }}create_from_role = "{{ env "NOMAD_VAULT_CREATE_FROM_ROLE"}}"{{ end }}
+  {{ if env "NOMAD_VAULT_CREATE_FROM_ROLE" }}create_from_role = "{{ env "NOMAD_VAULT_CREATE_FROM_ROLE"}}"{{ end }}
 }
