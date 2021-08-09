@@ -10,5 +10,5 @@ template {
 }
 
 exec {
-  command = "sudo bash -c 'chown nomad:nomad /etc/nomad.d/*.hcl'"
+  command = "sudo bash -c 'chown nomad:nomad /etc/nomad.d/*.hcl && sudo systemctl restart nomad'"
 }

@@ -57,5 +57,5 @@ sudo NOMAD_VAULT_CREATE_FROM_ROLE=$NOMAD_VAULT_CREATE_FROM_ROLE \
     VAULT_CLIENT_KEY=$VAULT_CLIENT_KEY \
     VAULT_TOKEN=$VAULT_TOKEN \
         consul-template \
-            -config /etc/consul-template.d/configurations/nomad/build-server-vault.hcl \
+            -config /etc/consul-template.d/configurations/nomad/build-vault-config.hcl \
             -once

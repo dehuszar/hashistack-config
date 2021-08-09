@@ -49,3 +49,12 @@ sudo NOMAD_CLIENT_ENABLED=$NOMAD_ACL_ENABLED \
         consul-template \
             -config /etc/consul-template.d/configurations/nomad/build-client-config.hcl \
             -once
+
+sudo NOMAD_VAULT_ENABLED=$NOMAD_VAULT_ENABLED \
+    VAULT_ADDR=$VAULT_ADDR \
+    VAULT_CACERT=$VAULT_CACERT \
+    VAULT_CLIENT_CERT=$VAULT_CLIENT_CERT \
+    VAULT_CLIENT_KEY=$VAULT_CLIENT_KEY \
+        consul-template \
+            -config /etc/consul-template.d/configurations/nomad/build-vault-config.hcl \
+            -once
