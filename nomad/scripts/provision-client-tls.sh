@@ -9,6 +9,7 @@ ansible $1 -b -m copy -a "src=envs/.env-nomad-acl dest=/etc/envs/"
 ansible $1 -b -m copy -a "src=envs/.env-nomad-base dest=/etc/envs/"
 ansible $1 -b -m copy -a "src=envs/.env-nomad-plugins dest=/etc/envs/"
 ansible $1 -b -m copy -a "src=envs/.env-nomad-client dest=/etc/envs/"
+ansible $1 -b -m copy -a "src=envs/.env-nomad-tls-client dest=/etc/envs/"
 ansible $1 -b -m copy -a "src=envs/.env-nomad-telemetry dest=/etc/envs/"
 
 # templates

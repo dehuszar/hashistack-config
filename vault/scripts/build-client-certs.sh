@@ -6,7 +6,7 @@ sudo DOMAIN=$DOMAIN \
     CONSUL_DATACENTER=$CONSUL_DATACENTER \
     VAULT_TOKEN=$VAULT_TOKEN \
     consul-template \
-        -config /etc/consul-template.d/certificates/vault/build-vault-client-certs.hcl -vault-addr $1 \
+        -config /etc/consul-template.d/certificates/vault/build-client-certs.hcl -vault-addr $1 \
         -once
 
 sudo ln -s /etc/certs/vault-ca.crt /usr/local/share/ca-certificates/
