@@ -1,8 +1,4 @@
-server           = {{ env "CONSUL_SERVER" }}
 bootstrap_expect = {{ env "CONSUL_BOOTSTRAP_EXPECT" }}
+node_name        = "{{ env "CONSUL_NODE_NAME" }}"
+server           = {{ env "CONSUL_SERVER" }}
 ui               = {{ env "CONSUL_UI" }}
-
-{{if env "CONSUL_HTTP_SSL"}}
-verify_incoming        = {{ env "CONSUL_HTTP_SSL_VERIFY_INCOMING" }}
-verify_server_hostname = {{ env "CONSUL_HTTP_SSL_VERIFY_SERVER_HOSTNAME" }}
-{{end}}

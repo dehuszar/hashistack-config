@@ -25,7 +25,6 @@ sudo CONSUL_HTTP_ADDR=$CONSUL_HTTP_ADDR \
     CONSUL_CACERT=$CONSUL_CACERT \
     CONSUL_CLIENT_CERT=$CONSUL_CLIENT_CERT \
     CONSUL_CLIENT_KEY=$CONSUL_CLIENT_KEY \
-    CONSUL_HTTP_SSL=$CONSUL_HTTP_SSL \
     CONSUL_HTTP_TOKEN=$CONSUL_HTTP_TOKEN \
         consul-template \
             -config /etc/consul-template.d/configurations/nomad/build-base-consul.hcl \

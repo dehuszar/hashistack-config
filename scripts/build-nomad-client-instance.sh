@@ -18,6 +18,10 @@
 ./scripts/install-env-vars-script.sh $1
 
 
+# Install docker
+./scripts/install-docker.sh $1
+
+
 ## MINIMAL VAULT CLIENT SETUP (FOR CERTIFICATE GENERATION AND HANDLING)
 # provision templates, config files, and scripts for Vault client such that Consul and Consul-Template can communicate with the Vault cluster
 ./vault/scripts/provision-client-config.sh $1
@@ -40,7 +44,7 @@ consul/scripts/install-agent-systemd.sh $1
 
 # generate configurations
 consul/scripts/build-client-config.sh $1
-consul/scripts/build-client-config-gossip.sh $1
+consul/scripts/build-config-gossip.sh $1
 consul/scripts/build-client-config-tls.sh $1
 
 # Install certificate generation systemd service

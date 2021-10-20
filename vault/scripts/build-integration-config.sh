@@ -8,5 +8,5 @@ CONSUL_CLIENT_KEY=$CONSUL_CLIENT_KEY \
 CONSUL_HTTP_ADDR=$CONSUL_HTTP_ADDR \
 CONSUL_HTTP_TOKEN=$CONSUL_HTTP_TOKEN \
     consul-template \
-        -config /etc/consul-template.d/configurations/vault/build-consul-integration-config.hcl \
+        -config /etc/consul-template.d/configurations/vault/build-integration-config.hcl \
         -once
