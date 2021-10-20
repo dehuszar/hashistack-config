@@ -7,6 +7,6 @@ sudo DOMAIN=$DOMAIN \
     VAULT_ADDR=$VAULT_ADDR \
     VAULT_TOKEN=$VAULT_TOKEN \
     consul-template \
-        -config /etc/consul-template.d/certificates/consul/build-consul-browser-certs.hcl \
+        -config /etc/consul-template.d/certificates/consul/build-browser-certs.hcl \
         -once
         
