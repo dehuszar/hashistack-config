@@ -41,5 +41,5 @@ template {
 }
 
 exec {
-  command = "sudo systemctl reload vault.service"
+  command = "sudo systemctl restart vault.service"
 }
