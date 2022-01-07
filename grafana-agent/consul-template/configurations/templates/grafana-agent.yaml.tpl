@@ -1,82 +1,118 @@
+{{ $nodeName := env "CONSUL_NODE_NAME" }}
+{{ $isNomadClient := printf "/nodes/%s/IS_NOMAD_CLIENT" $nodeName }}
+{{ $isNomadServer := printf "/nodes/%s/IS_NOMAD_SERVER" $nodeName }}
+{{ $isVaultServer := printf "/nodes/%s/IS_VAULT_SERVER" $nodeName }}
+{{ $isDNSServer := printf "/nodes/%s/IS_DNS_SERVER" $nodeName }}
 server:
   log_level: {{ keyOrDefault "services/grafana-cloud/SERVER_LOG_LEVEL" "info" }}
   http_listen_port: {{ keyOrDefault "services/grafana-cloud/SERVER_HTTP_LISTEN_PORT" "12345" }}
 
 metrics:
-  wal_directory: {{ keyOrDefault "services/grafana-cloud/METRICS_WAL_DIRECTORY" "/tmp/grafana-agent-wal"}}
+  wal_directory: {{ keyOrDefault "services/grafana-cloud/METRICS_WAL_DIRECTORY" "/tmp/grafana-agent-wal" }}
   global:
     scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_GLOBAL_SCRAPE_INTERVAL" "60s"}}
     remote_write:
-      - basic_auth:
-          password: {{ secret "services/grafana-cloud" "METRICS_REMOTE_WRITE_BASIC_AUTH_PASSWORD" }}
-          username: {{ secret "services/grafana-cloud" "METRICS_REMOTE_WRITE_BASIC_AUTH_USERNAME" }}
+      - basic_auth: {{ with secret "secret/services/grafana-cloud" }}
+          username: {{ .Data.data.METRICS_REMOTE_WRITE_BASIC_AUTH_USERNAME }}
+          password: {{ .Data.data.METRICS_REMOTE_WRITE_BASIC_AUTH_PASSWORD }}{{ end }}
         url: {{ keyOrDefault "services/grafana-cloud/METRICS_GLOBAL_REMOTE_WRITE_URL" "https://prometheus-us-central1.grafana.net/api/prom/push" }}
         write_relabel_configs:
         - source_labels: {{ keyOrDefault "services/grafana-cloud/METRICS_REMOTE_WRITE_WRITE_LABEL_CONFIGS_SOURCE_LABELS" "[__name__]" }}
           regex: {{ key "services/grafana-cloud/METRICS_REMOTE_WRITE_WRITE_LABEL_CONFIGS_REGEX" }}
           action: {{ keyOrDefault "services/grafana-cloud/METRICS_REMOTE_WRITE_WRITE_LABEL_CONFIGS_ACTION" "keep" }}
+
   configs:
     - name: integrations
       scrape_configs:
-      {{ with node }}
-      {{ define "isNomadClient" }}/nodes/{{ Node.Name }}/IS_NOMAD_CLIENT{{ end }}
-      {{ define "isNomadServer" }}/nodes/{{ Node.Name }}/IS_NOMAD_SERVER{{ end }}
-      {{ define "isVaultServer" }}/nodes/{{ Node.Name }}/IS_VAULT_SERVER{{ end }}
       # all nodes are Consul Clients
       - job_name: integrations/consul
-        server: {{ keyOrDefault "services/consul/CONSUL_HTTP_ADDR" "https://localhost:8501" }}
-        ca_file: {{ key "services/consul/CONSUL_CACERT" }}
-        cert_file: {{ key "services/consul/client/CONSUL_CLIENT_CERT" }}
-        key_file: {{ key "services/consul/client/CONSUL_CLIENT_KEY" }}
+        metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_METRICS_PATH" "/v1/agent/metrics" }}
+        params:
+          format: [prometheus]
+        scheme: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SCHEME" "https"}}
+        scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SCRAPE_INTERVAL" "60s"}}
+        static_configs:
+          - targets: ['localhost:8501']
+        tls_config:
+          ca_file: {{ env "CONSUL_CACERT" }}
+          cert_file: {{ env "CONSUL_CLIENT_CERT" }}
+          key_file: {{ env "CONSUL_CLIENT_KEY" }}
+          server_name: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SD_CONFIG_SERVER_NAME" "localhost" }}
+          insecure_skip_verify: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SD_CONFIG_INSECURE_SKIP_VERIFY" "false" }}
+      {{ if keyExists ( or $isNomadClient $isNomadServer ) }}
       # if Nomad Client or Server
-      {{ if key ( or isNomadClient isNomadServer ) }}
       - job_name: integrations/nomad
-        metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_METRICS_PATH" "/v1/metrics?format=prometheus" }}
+        # relabel_configs:
+        # - source_labels: ['__meta_consul_tags']
+        #   regex: '(.*)http(.*)'
+        #   action: keep
+        metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_METRICS_PATH" "/v1/metrics" }}
+        scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_SCRAPE_INTERVAL" "60s"}}
         static_configs:
-        - targets: [{{ keyOrDefault "services/nomad/NOMAD_ADDR"}}]
+          - targets: ['localhost:4646']
+        tls_config:
+          ca_file: {{ env "NOMAD_CACERT" }}
+          cert_file: {{ env "NOMAD_CLIENT_CERT" }}
+          key_file: {{ env "NOMAD_CLIENT_KEY" }}
+          server_name: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SD_CONFIG_SERVER_NAME" "localhost" }}
+          insecure_skip_verify: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SD_CONFIG_INSECURE_SKIP_VERIFY" "false" }}
       {{ end }}
+      {{ if keyExists $isVaultServer }}
       # if Vault Server
-      {{ if key isVaultServer }}
       - job_name: integrations/vault
+        metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_VAULT_METRICS_PATH" "/v1/sys/metrics" }}
+        scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_SCRAPE_INTERVAL" "60s"}}
         static_configs:
-        - targets: [ {{ keyOrDefault "services/vault/VAULT_ADDR"}} ]
+          - targets: ['localhost:8200']
+        tls_config:
+          ca_file: {{ env "VAULT_CACERT" }}
+          cert_file: {{ env "VAULT_CLIENT_CERT" }}
+          key_file: {{ env "VAULT_CLIENT_KEY" }}
+          server_name: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SD_CONFIG_SERVER_NAME" "localhost" }}
+          insecure_skip_verify: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SD_CONFIG_INSECURE_SKIP_VERIFY" "false" }}
       {{ end }}
-      {{ end }}
-
+      
 logs:
   configs:
   - name: default
     positions:
       filename: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_POSITIONS_FILENAME" "/tmp/positions.yaml" }}
-    scrape_configs:
-      {{ range $i := loop key "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_SCRAPE_CONFIGS" | parseJSON }}
-      - job_name: {{ $i.name }}
+    scrape_configs: {{ with $configs := key "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_SCRAPE_CONFIGS" | parseJSON }}{{ range $index, $element := $configs }}
+      - job_name: {{ $element.name }}
         static_configs:
-          - targets: {{ $i.targets }}
+          - targets: {{ $element.targets }}
             labels:
-              job: {{ $i.name }}
-              __path__: {{ $i.path }}
+              job: {{ $element.name }}
+              __path__: {{ $element.path }}{{ end }}{{ end }}
+      {{ if keyExists $isNomadClient }}
+      - job_name: "nomad_jobs"
+        static_configs:
+          - targets: [localhost]
+            labels:
+              job: "nomad_jobs"
+              __path__: "/opt/nomad/alloc/*/alloc/logs/*"
       {{ end }}
     clients:
       - url: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_CLIENTS_URL" "http://logs-prod-us-central1.grafana.net/loki/api/v1/push" }}
-        basic_auth:
-          username: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_CLIENTS_USERNAME" }}
-          password: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_CLIENTS_PASSWORD" }}
+        basic_auth: {{ with secret "secret/services/grafana-cloud" }}
+          username: {{ .Data.data.LOGS_CONFIGS_DEFAULT_CLIENTS_USERNAME }}
+          password: {{ .Data.data.LOGS_CONFIGS_DEFAULT_CLIENTS_PASSWORD }}{{ end }}
 
 integrations:
-  {{ with node }}
-  {{ define "isDNSServer" }}/nodes/{{ Node.Name }}/IS_DNS_SERVER{{ end }}
   agent:
-    enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_AGENT_ENABLED" true }}
-  consul_exporter:
-    enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_CONSUL_EXPORTER_ENABLED" true }}
+    enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_AGENT_ENABLED" "true" }}
+  # consul_exporter:
+  #   enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_CONSUL_EXPORTER_ENABLED" "true" }}
+  #   server: {{ env "CONSUL_HTTP_ADDR" }}
+  #   ca_file: {{ env "CONSUL_CACERT" }}
+  #   cert_file: {{ env "CONSUL_CLIENT_CERT" }}
+  #   key_file: {{ env "CONSUL_CLIENT_KEY" }}
+  {{ if keyExists $isDNSServer }}
   # if PiHole instance
-  {{ if key isDNSServer }}
   dnsmasq_exporter:
-    enabled: true
+    enabled: "true"
     dnsmasq_address: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_DNSMASQ_EXPORTER_DNSMASQ_ADDRESS" "localhost:53" }}
     leases_path: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_DNSMASQ_EXPORTER_LEASES_PATH" "/etc/pihole/dhcp.leases" }}
   {{ end }}
   node_exporter:
-    enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_NODE_EXPORTER_ENABLED" true }}
-  {{ end }}
+    enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_NODE_EXPORTER_ENABLED" "true" }}

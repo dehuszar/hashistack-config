@@ -1,0 +1,13 @@
+[Unit]
+Description=consul-template
+Requires=network-online.target consul.service
+After=network-online.target consul.service
+Wants=consul.service
+
+[Service]
+Restart=on-failure
+ExecStart=/etc/consul-template.d/configurations/grafana-agent/build-grafana-agent-config.sh
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
