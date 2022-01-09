@@ -28,11 +28,19 @@ metrics:
       - job_name: integrations/consul
         metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_METRICS_PATH" "/v1/agent/metrics" }}
         params:
-          format: [prometheus]
+          format:
+            - prometheus
         scheme: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SCHEME" "https"}}
         scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SCRAPE_INTERVAL" "60s"}}
         static_configs:
-          - targets: ['localhost:8501']
+          - targets:
+            - localhost:8501
+            labels:
+              datacenter: "home"
+              job: "consul_agents"
+              host: {{ env "HOSTNAME" }}
+              instance: {{ env "HOSTNAME" }}
+              node: {{ env "CONSUL_NODE_NAME" }}
         tls_config:
           ca_file: {{ env "CONSUL_CACERT" }}
           cert_file: {{ env "CONSUL_CLIENT_CERT" }}
@@ -47,9 +55,20 @@ metrics:
         #   regex: '(.*)http(.*)'
         #   action: keep
         metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_METRICS_PATH" "/v1/metrics" }}
+        params:
+          format:
+            - prometheus
+        scheme: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SCHEME" "https"}}
         scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_SCRAPE_INTERVAL" "60s"}}
         static_configs:
-          - targets: ['localhost:4646']
+          - targets: 
+            - localhost:4646
+            labels:
+              datacenter: "home"
+              job: "nomad_agents"
+              host: {{ env "HOSTNAME" }}
+              instance: {{ env "HOSTNAME" }}
+              node: {{ env "CONSUL_NODE_NAME" }}
         tls_config:
           ca_file: {{ env "NOMAD_CACERT" }}
           cert_file: {{ env "NOMAD_CLIENT_CERT" }}
@@ -61,9 +80,21 @@ metrics:
       # if Vault Server
       - job_name: integrations/vault
         metrics_path: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_VAULT_METRICS_PATH" "/v1/sys/metrics" }}
+        params:
+          format:
+            - prometheus
+        scheme: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_CONSUL_SCHEME" "https"}}
         scrape_interval: {{ keyOrDefault "services/grafana-cloud/METRICS_CONFIGS_INTEGRATIONS_SCRAPE_CONFIGS_NOMAD_SCRAPE_INTERVAL" "60s"}}
+        bearer_token: {{ env "VAULT_TOKEN" }}
         static_configs:
-          - targets: ['localhost:8200']
+          - targets: 
+            - localhost:8200
+            labels:
+              datacenter: "home"
+              job: "vault_agents"
+              host: {{ env "HOSTNAME" }}
+              instance: {{ env "HOSTNAME" }}
+              node: {{ env "CONSUL_NODE_NAME" }}
         tls_config:
           ca_file: {{ env "VAULT_CACERT" }}
           cert_file: {{ env "VAULT_CLIENT_CERT" }}
@@ -108,7 +139,7 @@ integrations:
   #   cert_file: {{ env "CONSUL_CLIENT_CERT" }}
   #   key_file: {{ env "CONSUL_CLIENT_KEY" }}
   {{ if keyExists $isDNSServer }}
-  # if PiHole instance
+  # if HOSTNAMEe instance
   dnsmasq_exporter:
     enabled: "true"
     dnsmasq_address: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_DNSMASQ_EXPORTER_DNSMASQ_ADDRESS" "localhost:53" }}
