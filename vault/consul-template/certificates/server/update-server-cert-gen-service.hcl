@@ -32,5 +32,5 @@ template {
 }
 
 exec {
-  command = "sudo bash -c 'sudo bash /etc/consul-template.d/certificates/vault/update-server-cert-gen-systemd-service.sh'"
+  command = "sudo bash /etc/consul-template.d/certificates/vault/update-server-cert-gen-systemd-service.sh"
 }

@@ -2,7 +2,7 @@
 
 source /etc/envs/build-env-vars
 
-DOMAIN=$DOMAIN \
+sudo DOMAIN=$DOMAIN \
     CONSUL_DATACENTER=$CONSUL_DATACENTER \
     VAULT_ADDR=$VAULT_ADDR \
     VAULT_TOKEN=$VAULT_TOKEN \
