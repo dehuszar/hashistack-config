@@ -1,23 +1,3 @@
 #!/usr/bin/env bash
 
-source /etc/envs/build-env-vars
-
-sudo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-    AWS_REGION=$AWS_REGION \
-    AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-    VAULT_AGENT_ADDR=$VAULT_AGENT_ADDR \
-    VAULT_API_ADDR=$VAULT_API_ADDR \
-    VAULT_AWSKMS_SEAL_KEY_ID=$VAULT_AWSKMS_SEAL_KEY_ID \
-    VAULT_CACERT=$VAULT_CACERT \
-    VAULT_SERVER_AGENT_CERT=$VAULT_SERVER_AGENT_CERT \
-    VAULT_SERVER_AGENT_KEY=$VAULT_SERVER_AGENT_KEY \
-    VAULT_CLUSTER_ADDR=$VAULT_CLUSTER_ADDR \
-    VAULT_DISABLE_MLOCK=$VAULT_DISABLE_MLOCK \
-    VAULT_LOG_FORMAT=$VAULT_LOG_FORMAT \
-    VAULT_LOG_LEVEL=$VAULT_LOG_LEVEL \
-    VAULT_RAFT_NODE_ID=$VAULT_RAFT_NODE_ID \
-    VAULT_RAFT_PATH=$VAULT_RAFT_PATH \
-    VAULT_UI=$VAULT_UI \
-        consul-template \
-            -config /etc/consul-template.d/configurations/vault/build-server-config-tls.hcl \
-            -once
+ansible $1 -b -a "sudo /etc/consul-template.d/configurations/vault/build-server-config-tls.sh" $2

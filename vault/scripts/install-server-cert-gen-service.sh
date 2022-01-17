@@ -4,7 +4,7 @@
 ansible $1 -b -a "sudo mkdir -p /etc/certs"
 
 # create EnvironmentFile for service based on deployed env vars
-ansible $1 -b -a "sudo bash /etc/consul-template.d/certificates/vault/build-vault-server-cert-gen-templates.sh" $2
+ansible $1 -b -a "sudo bash /etc/consul-template.d/certificates/vault/build-server-cert-gen-templates.sh" $2
 
 # install certificate generation service
 ansible $1 -b -a "sudo bash /etc/consul-template.d/certificates/vault/update-server-cert-gen-systemd-service.sh" $2

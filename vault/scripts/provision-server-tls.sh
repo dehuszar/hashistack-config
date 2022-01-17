@@ -16,3 +16,8 @@ ansible $1 -b -m copy -a "src=envs/.env-vault-tls-server dest=/etc/envs/"
 # templates
 ansible $1 -b -m copy -a "src=vault/consul-template/certificates/cli/ dest=/etc/consul-template.d/certificates/vault"
 ansible $1 -b -m copy -a "src=vault/consul-template/certificates/server/ dest=/etc/consul-template.d/certificates/vault"
+
+# execute permissions
+ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/certificates/vault/build-server-cert-gen-templates.sh"
+ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/certificates/vault/build-server-certs.sh"
+ansible $1 -b -a "sudo chmod +x /etc/consul-template.d/certificates/vault/update-server-cert-gen-systemd-service.sh"
