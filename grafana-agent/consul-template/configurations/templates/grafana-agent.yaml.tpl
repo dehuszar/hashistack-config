@@ -122,6 +122,9 @@ logs:
             labels:
               job: "nomad_jobs"
               __path__: "/opt/nomad/alloc/*/alloc/logs/*"
+              host: {{ env "HOSTNAME" }}
+              instance: {{ env "HOSTNAME" }}
+              node: {{ env "CONSUL_NODE_NAME" }}
       {{ end }}
     clients:
       - url: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_CLIENTS_URL" "http://logs-prod-us-central1.grafana.net/loki/api/v1/push" }}
@@ -132,14 +135,7 @@ logs:
 integrations:
   agent:
     enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_AGENT_ENABLED" "true" }}
-  # consul_exporter:
-  #   enabled: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_CONSUL_EXPORTER_ENABLED" "true" }}
-  #   server: {{ env "CONSUL_HTTP_ADDR" }}
-  #   ca_file: {{ env "CONSUL_CACERT" }}
-  #   cert_file: {{ env "CONSUL_CLIENT_CERT" }}
-  #   key_file: {{ env "CONSUL_CLIENT_KEY" }}
   {{ if keyExists $isDNSServer }}
-  # if HOSTNAMEe instance
   dnsmasq_exporter:
     enabled: "true"
     dnsmasq_address: {{ keyOrDefault "services/grafana-cloud/INTEGRATIONS_DNSMASQ_EXPORTER_DNSMASQ_ADDRESS" "localhost:53" }}
