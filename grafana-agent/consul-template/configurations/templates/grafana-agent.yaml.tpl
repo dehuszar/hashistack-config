@@ -108,24 +108,6 @@ logs:
   - name: default
     positions:
       filename: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_POSITIONS_FILENAME" "/tmp/positions.yaml" }}
-    scrape_configs: {{ with $configs := key "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_SCRAPE_CONFIGS" | parseJSON }}{{ range $index, $element := $configs }}
-      - job_name: {{ $element.name }}
-        static_configs:
-          - targets: {{ $element.targets }}
-            labels:
-              job: {{ $element.name }}
-              __path__: {{ $element.path }}{{ end }}{{ end }}
-      {{ if keyExists $isNomadClient }}
-      - job_name: "nomad_jobs"
-        static_configs:
-          - targets: [localhost]
-            labels:
-              job: "nomad_jobs"
-              __path__: "/opt/nomad/alloc/*/alloc/logs/*"
-              host: {{ env "HOSTNAME" }}
-              instance: {{ env "HOSTNAME" }}
-              node: {{ env "CONSUL_NODE_NAME" }}
-      {{ end }}
     clients:
       - url: {{ keyOrDefault "services/grafana-cloud/LOGS_CONFIGS_DEFAULT_CLIENTS_URL" "http://logs-prod-us-central1.grafana.net/loki/api/v1/push" }}
         basic_auth: {{ with secret "secret/services/grafana-cloud" }}
