@@ -131,6 +131,23 @@ logs:
         basic_auth: {{ with secret "secret/services/grafana-cloud" }}
           username: {{ .Data.data.LOGS_CONFIGS_DEFAULT_CLIENTS_USERNAME }}
           password: {{ .Data.data.LOGS_CONFIGS_DEFAULT_CLIENTS_PASSWORD }}{{ end }}
+    scrape_configs: 
+      - job_name: journal
+        journal:
+          labels:
+            job: journal
+            host: {{ env "HOSTNAME" }}
+            instance: {{ env "HOSTNAME" }}
+            node: {{ env "CONSUL_NODE_NAME" }}
+        relabel_configs:
+          # services
+          - source_labels:
+              - __journal__systemd_unit
+            target_label: unit
+          # docker containers
+          - source_labels:
+              - __journal_container_name
+            target_label: container
 
 integrations:
   agent:
