@@ -15,7 +15,7 @@ When deploying to VMs the Cloud-Init/User-Data and remote_exec steps give you a 
 
 From bare-metal, this gets a little more difficult as you lose a lot of the niceties and abstractions that come with automated VM deployment; and doing things like injecting env vars or terminating the instance and redeploying aren't as effortless.  I try to use (where I know how) HashiCorp tools exclusively.  I fall back to a light layer of ansible just to get a few key pieces in place before the code that follows kicks in.
 
-There are some [great tools](https://github.com/solo-io/packer-builder-arm-image) that help in making a "golden image" which could be written to an SD card or a RPi network boot setup.  I would love to get to that beautiful place, but it are out of scope for the moment.  I would gladly include or make reference to any implementations that try to tackle these upgrades.
+There are some [great tools](https://github.com/solo-io/packer-builder-arm-image) that help in making a "golden image" which could be written to an SD card or a RPi network boot setup.  I would love to get to that beautiful place, but it is out of scope for the moment.  I would gladly include or make reference to any implementations that try to tackle these upgrades.
 
 This is a gigantic work-in-progress and I am still (and will always be) a student of Linux, microservice architecture, and general infrastructure development.  So if you see something dumb, dangerous, confusing, or that could be done more efficiently, I implore you to file an issue.  I would be happy to receive feedback.
 
@@ -24,7 +24,7 @@ Each wave's particulars will be described in more detail in READMEs tucked away 
 ### Wave 1 :: Deploy environment variables and use them to generate config files
 Most tutorials give you complete hcl files to use as reference for configuring your server and client agents, detailing a few sensible defaults with the sensitive bits redacted.  This is great, but if used as provided, requires a lot of wrenching on several minute details across several (in my case 12 RPi & 2 amd64) machines.  Doing things like bootstrapping the cluster and enabling https become incredibly tedious and error prone without putting a few layers of automation in place.
 
-This first wave will (utilizing stock env vars provided by each tool where available) deploy env files which contain values you would like to have each agent node utilize in the configuration file.  These will be consumed by Consul-Template in waves subsequent waves.
+This first wave will (utilizing stock env vars provided by each tool where available) deploy env files which contain values you would like to have each agent node utilize in the configuration file.  These will be consumed by Consul-Template in subsequent waves.
 
 ### Wave 2 :: Generating agent configs
 In order to start Vault, we'll need to run some scripts to tell Consul-Template to generate our config files.  Having done so, the envs deployed in the previous step will have been stamped into place and Vault should run.
