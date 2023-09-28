@@ -2,6 +2,9 @@
 (formerly hashipi-config)
 This repo is a collection of tools and configurations for my Raspberry Pi homelab cluster built on HashiCorp's Consul, Nomad, and Vault, with assists from Consul-Template.  While there will --likely for a little while longer-- some vestigial references to raspberry pis, the goal of this repo is to provide for a bare-metal rollout of each service with only a few keystrokes.
 
+# WARNING
+This repo is still "finding itself" and is undergoing rapid, sometimes dramatic, changes.  Please feel free to use as you like, but if you wanted to use this for production use, I am intending to set up an automated testing regimen, but until that's in place, you might find your cheese moved suddenly and without warning.  Thanks for your patience.  I would love any feedback you might have.
+
 ## Why?
 
 HashiCorp's tools, once set up, are remarkably simple to use given what they do for you.  Getting them up and running, however, can be a bit of a battle with multiple subsequent waves of effort required to
@@ -21,6 +24,7 @@ This is a gigantic work-in-progress and I am still (and will always be) a studen
 
 ## Steps to configure new Vault Clusters
 Each wave's particulars will be described in more detail in READMEs tucked away in the various sub-folders for each tool.  We will discuss the game-plan at a high level here.
+
 ### Wave 1 :: Deploy environment variables and use them to generate config files
 Most tutorials give you complete hcl files to use as reference for configuring your server and client agents, detailing a few sensible defaults with the sensitive bits redacted.  This is great, but if used as provided, requires a lot of wrenching on several minute details across several (in my case 12 RPi & 2 amd64) machines.  Doing things like bootstrapping the cluster and enabling https become incredibly tedious and error prone without putting a few layers of automation in place.
 
@@ -35,7 +39,10 @@ With our Agents now running (in non-TLS mode to start), we can start deploying o
 In most cases this will involve deploying configurations for ACL policies and roles, secrets backends, users, etc.  These things tend to be pretty proprietary to one's individual use-cases and is out of the scope of this repo.  The only real assumption I'm making for this wave is that a PKI/CA configuration in Vault is being deployed to facilitate TLS certificate generation.
 
 ### Wave 4 :: Generating certificates
+Once the TLS secrets engine has been bootstrapped and configured, we can use Consul-Template scripts deployed to each node to communicate with Vault to generate certificates that each node's agents for Vault, Consul, and Nomad can use to bootstrap HTTPS-only communication.
 
 ### Wave 5 :: Enabling HTTPS
+With certificates in place, we need to switch over from using the Consul-Template generated, non-TLS, agent configs to using the TLS-enabled configs.
 
 ### Wave 6 :: Enabling Integrations
+At this point, we should have HTTPS encrypted communication across nodes and core services.  From here we should be able to start decorating our HashiStack cloud with additional functionality like Grafana agents for observability, Boundary for secure access, Waypoint runners for application builds, and whatever else might be important for your quality of life.
