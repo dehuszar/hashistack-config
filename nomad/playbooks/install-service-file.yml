@@ -1,0 +1,30 @@
+---
+- hosts: ubuntu
+  become: yes
+  become_user: ubuntu
+  become_method: sudo
+  gather_facts: true
+
+  tasks:
+    - name: Install Nomad systemd service definition
+      template:
+        src: ./nomad.service
+        dest: /tmp/nomad.service
+      vars:
+        wants: Wants=consul.service
+        after: After=consul.service
+        start_limit_burst: StartLimitBurst = 5
+        start_limit_interval_sec: StartLimitIntervalSec = 10s
+        start_limit_interval: ""
+    - name: move systemd definition in place
+      become: yes
+      become_method: sudo
+      command: >
+        sudo mv /tmp/nomad.service /usr/lib/systemd/system/nomad.service
+    - name: set definition permissions
+      shell:
+        cmd: "sudo chown root:root /usr/lib/systemd/system/nomad.service && sudo chmod 0644 /usr/lib/systemd/system/nomad.service"
+    - name: reload systemd configurations
+      shell:
+        cmd: "sudo systemctl daemon-reload"
+
