@@ -1,0 +1,14 @@
+---
+- hosts: ubuntu
+  become: yes
+
+  tasks:
+    - name: Pass options to dpkg on run
+      ansible.builtin.apt:
+        upgrade: full
+        update_cache: yes
+        dpkg_options: 'force-confold,force-confdef'
+    - name: Install HashiCorp applications
+      ansible.builtin.apt:
+        name: nomad,consul,vault,envconsul,consul-template,podman
+        state: latest
