@@ -8,7 +8,24 @@
         upgrade: full
         update_cache: yes
         dpkg_options: 'force-confold,force-confdef'
-    - name: Install HashiCorp applications
+    - name: Install HashiCorp applications, and Podman OCI runtime
       ansible.builtin.apt:
-        name: nomad,consul,vault,envconsul,consul-template,podman
+        name: nomad,consul,vault,envconsul,consul-template,podman,unzip
         state: latest
+    - name: Install Podman Nomad Driver
+      ansible.builtin.get_url:
+        url: https://releases.hashicorp.com/nomad-driver-podman/0.5.1/nomad-driver-podman_0.5.1_linux_arm64.zip
+        dest: /tmp/nomad-driver-podman_0.5.1_linux_arm64.zip
+    - name: Create nomad plugins folder if it doesn't exist
+      ansible.builtin.file:
+        path: /opt/nomad/plugins
+        state: directory
+        owner: nomad
+        group: nomad
+    - name: unzip archive
+      ansible.builtin.unarchive:
+        remote_src: true
+        src: /tmp/nomad-driver-podman_0.5.1_linux_arm64.zip
+        dest: /opt/nomad/plugins/
+        owner: nomad
+        group: nomad
