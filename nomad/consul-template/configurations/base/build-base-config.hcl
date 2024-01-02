@@ -16,8 +16,8 @@ template {
 }
 
 template {
-  source      = "/etc/consul-template.d/configurations/nomad/templates/plugins.hcl.tpl"
-  destination = "/etc/nomad.d/plugins.hcl"
+  source      = "/etc/consul-template.d/configurations/nomad/templates/plugin-podman.hcl.tpl"
+  destination = "/etc/nomad.d/plugin-podman.hcl"
   perms       = 0444
 }
 

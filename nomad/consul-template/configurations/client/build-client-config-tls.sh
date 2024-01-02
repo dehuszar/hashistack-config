@@ -2,6 +2,8 @@
 
 source /etc/envs/build-env-vars
 
+# install podman driver
+
 sudo NOMAD_ACL_ENABLED=$NOMAD_ACL_ENABLED \
         consul-template \
             -config /etc/consul-template.d/configurations/nomad/build-acl-config.hcl \

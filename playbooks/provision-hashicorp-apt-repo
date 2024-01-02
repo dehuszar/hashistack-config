@@ -1,0 +1,16 @@
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+    - name: add hashicorp repo
+      block:
+        - name: hashicorp | no apt key
+          ansible.builtin.get_url:
+            url: https://apt.releases.hashicorp.com/gpg
+            dest: /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+        - name: hashicorp | apt source
+          
+          ansible.builtin.apt_repository:
+            repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ distribution_release | default('lunar') }} main"
+
